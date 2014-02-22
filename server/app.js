@@ -19,7 +19,7 @@ module.exports = function(SERVER_ROOT) {
     // App middleware
     app.use(cors());
     app.set('view engine', 'ejs');
-    app.set('views', path.join(app.directory, 'public'));
+    app.set('views', path.join(app.directory, 'client'));
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
