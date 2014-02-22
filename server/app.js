@@ -59,6 +59,14 @@ module.exports = function(SERVER_ROOT) {
 
   });
 
+  app.get('/api/sessions', function(req, res) {
+    console.log('Sessions: ');
+    var sessions = require('../database/sessions.json');
+
+    return res.json(sessions);
+
+  });
+
   app.post('/api/question/:questionID', function(req, res) {
     console.log('Question: ', req.params.questionID);
     var response = +req.params.questionID;
