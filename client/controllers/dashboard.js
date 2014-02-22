@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('HomeCtrl', function($scope) {
+.controller('DashboardCtrl', function($scope) {
   $scope.world = 'World';
 });
