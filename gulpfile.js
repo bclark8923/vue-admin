@@ -25,6 +25,7 @@ var config = {
       'client/services/*.js',
       'client/controllers/index.js',
       'client/controllers/*/*.js',
+      'client/controllers/*.js',
       'client/app.js',
       'client/config.js',
       'client/routes.js',
