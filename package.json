@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development nodemon server.js"
   },
+"authors": [
+    "gdi2290 <github@gdi2290.com>",
+    "bclark8923"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/gdi2290/vue-admin.git"
