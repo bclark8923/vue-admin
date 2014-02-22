@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="fragment" content="!" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>OEUVRE</title>
+
+  <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+  <!-- Optional theme -->
+  <link href="/stylesheets/bootstrap-theme.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/bower_components/angular-loading-bar/build/loading-bar.css">
+  <link rel="stylesheet" type="text/css" href="/bower_components/angular/angular-csp.css">
+  <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7258052/746364/css/fonts.css" />
+
+  <!-- Stylus CSS -->
+  <link href="/stylesheets/styles.css" rel="stylesheet">
+
+  <% if (env === 'development') { %>
+
+  <script src="//localhost:35729/livereload.js"></script>
+  <script type="text/javascript">
+      Error.stackTraceLimit = Infinity;
+  </script>
+
+  <% } %>
+</head>
+<body>
+
+    <div ng-view autoscroll="true"></div>
+
+
+    <footer>
+        &copy; 2014
+    </footer>
+
+    <div id="fb-root"></div>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/underscore/underscore.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-ui-utils/ui-utils.js"></script>
+    <script src="/bower_components/angular-bindonce/bindonce.js"></script>
+    <script src="/bower_components/angular-loading-bar/build/loading-bar.js"></script>
+
+    <script src="/javascripts/scripts.js"></script>
+    <% if (env === 'development') { %>
+
+    <script>
+      angular.module('app')
+
+    </script>
+
+    <% } else if (env === 'staging') { %>
+
+    <script>
+      angular.module('app')
+
+    </script>
+
+
+    <% } else { %>
+
+    <script>
+      angular.module('app')
+    </script>
+
+    <% } %>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+</body>
+</html>
