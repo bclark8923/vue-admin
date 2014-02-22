@@ -11,6 +11,12 @@ angular.module('app')
     controller: 'HomeCtrl'
   })
 
+  .when('/sessions', {
+    templateUrl: baseTemplateUrl + '/sessions.html',
+    controller: 'SessionsCtrl',
+    state: 'sessions'
+  })
+
 
   .otherwise({
     redirectTo: '/'
