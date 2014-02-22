@@ -1,20 +1,31 @@
 <!doctype html>
-<html lang="en" ng-app="app">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="fragment" content="!" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>OEUVRE</title>
+  <title>Vue</title>
 
   <link href="/stylesheets/bootstrap.css" rel="stylesheet">
   <!-- Optional theme -->
   <link href="/stylesheets/bootstrap-theme.css" rel="stylesheet">
   <!-- Google Fonts -->
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <!-- GOOGLE FONT -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/bower_components/angular-loading-bar/build/loading-bar.css">
   <link rel="stylesheet" type="text/css" href="/bower_components/angular/angular-csp.css">
-  <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7258052/746364/css/fonts.css" />
+
+  <!-- Basic Styles -->
+  <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
+
+  <!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+  <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.css">
 
   <!-- Stylus CSS -->
   <link href="/stylesheets/styles.css" rel="stylesheet">
@@ -28,9 +39,11 @@
 
   <% } %>
 </head>
-<body>
+<body id="ng-app" ng-app="app">
 
-  <div ng-view autoscroll="true"></div>
+  <header id="header"     ng-include="'templates/header.html'"></header>
+  <aside  id="left-panel" ng-include="'templates/aside.html'" scope="" onload="">
+  <div    id="main" role="main" ng-view autoscroll="true"></div>
 
 
   <footer>
