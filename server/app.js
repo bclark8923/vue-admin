@@ -23,6 +23,8 @@ module.exports = function(SERVER_ROOT) {
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    app.use(express.cookieParser());
+    app.use(express.session({secret: 'yolo'}));
     // app.use(express.session());
     app.use('/bower_components', express.static(path.join(app.directory, 'bower_components')));
     app.use('/templates', express.static(path.join(app.directory, 'client/templates')));
