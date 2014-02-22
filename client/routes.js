@@ -8,7 +8,8 @@ angular.module('app')
   $routeProvider
   .when('/', {
     templateUrl: baseTemplateUrl + '/index.html',
-    controller: 'HomeCtrl'
+    controller: 'HomeCtrl',
+    state: 'dashboard'
   })
 
   .when('/sessions', {
@@ -17,6 +18,11 @@ angular.module('app')
     state: 'sessions'
   })
 
+  .when('/pushes', {
+    templateUrl: baseTemplateUrl + '/pushes.html',
+    controller: 'PushesCtrl',
+    state: 'pushes'
+  })
 
   .otherwise({
     redirectTo: '/'

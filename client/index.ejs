@@ -39,7 +39,7 @@
 
   <% } %>
 </head>
-<body id="ng-app" ng-app="app">
+<body ng-app="app">
 
   <aside  id="left-panel" ng-include="'templates/aside.html'" scope="" onload=""></aside>
   <div    id="main" role="main">
@@ -79,7 +79,7 @@
     <!-- END RIBBON -->
 
     <!-- MAIN CONTENT -->
-    <div id="content" ng-view autoscroll="true">
+    <div ng-view autoscroll="true" style="padding: 10px 14px;position: relative;left: 0;">
       Loading...
     </div>
 
@@ -92,40 +92,8 @@
   </footer>
 
   <div id="fb-root"></div>
+
   <script src="/bower_components/jquery/dist/jquery.js"></script>
-  <!-- BOOTSTRAP JS -->
-  <script src="js/bootstrap/bootstrap.min.js"></script>
-
-  <!-- CUSTOM NOTIFICATION -->
-  <script src="js/notification/SmartNotification.min.js"></script>
-
-  <!-- JARVIS WIDGETS -->
-  <script src="js/smartwidgets/jarvis.widget.min.js"></script>
-
-  <!-- EASY PIE CHARTS -->
-  <script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
-
-  <!-- SPARKLINES -->
-  <script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
-
-  <!-- JQUERY VALIDATE -->
-  <script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
-
-  <!-- JQUERY MASKED INPUT -->
-  <script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
-
-  <!-- JQUERY SELECT2 INPUT -->
-  <script src="js/plugin/select2/select2.min.js"></script>
-
-  <!-- JQUERY UI + Bootstrap Slider -->
-  <script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
-
-  <!-- browser msie issue fix -->
-  <script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
-
-  <!-- SmartClick: For mobile devices -->
-  <script src="js/plugin/smartclick/smartclick.js"></script>
-
   <script src="/bower_components/underscore/underscore.js"></script>
   <script src="/bower_components/angular/angular.js"></script>
   <script src="/bower_components/angular-route/angular-route.js"></script>

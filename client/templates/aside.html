@@ -25,14 +25,13 @@ will not initialize.
   -->
 
   <ul>
-    <li class="active">
-      <a href="ajax/dashboard.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+
+    <li ng-class="{active: isActive('dashboard')}">
+      <a href="/" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
     </li>
-    <li>
-      <a href="ajax/inbox.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Inbox</span><span class="badge pull-right inbox-badge">14</span></a>
-    </li>
-    <li>
-      <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Graphs</span></a>
+
+    <li ng-class="{active: isActive('sessions')}">
+      <a href="/sessions"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Sessions</span></a>
       <ul>
         <li>
           <a href="ajax/flot.html">Flot Chart</a>
