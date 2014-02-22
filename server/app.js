@@ -43,10 +43,36 @@ module.exports = function(SERVER_ROOT) {
   });
 
 
-  app.get('/*', function(req, res) {
-    res.render('index', {env: app.get('env')});
+
+  app.get('/api/device/:deviceID', function(req, res) {
+    console.log('Device: ', req.params.deviceID);
+
+    var response = (+req.params.deviceID % 2) ? {
+      askUser: true,
+      question: 'the question',
+      id: 2029
+    } : {
+      askUser: false
+    };
+
+    return res.json(response);
+
   });
 
+  app.post('/api/question/:questionID', function(req, res) {
+    console.log('Question: ', req.params.questionID);
+    var response = +req.params.questionID;
+
+    return res.json({
+
+    });
+
+  });
+
+
+  app.get('/*', function(req, res) {
+    return res.render('index', {env: app.get('env')});
+  });
 
   return app;
 };
