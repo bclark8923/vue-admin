@@ -53,6 +53,7 @@ for num in range(1,numSessions):
 	print "\"country\": \"" + countries[curDevice] + "\","
 	print "\"location\": { \"lat\": " + latitude[curDevice] + ", \"lon\": " + longitude[curDevice] + "},"
 	print "\"date\": \"" + startDay + "\","
+	print "\"interactionsTree\": [],"
 	print "\"interactions\": ["
 
 	sessionTime = 0
