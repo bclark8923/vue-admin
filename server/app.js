@@ -64,7 +64,6 @@ module.exports = function(SERVER_ROOT) {
             question: questions[0].question,
             id: question._id
           }
-          /*
           database.questions().update({_id:question._id}, {$set: {asked: true}}, function(err, saved) {
             if( err || !saved ) {
               console.log('question not saved');
@@ -72,7 +71,6 @@ module.exports = function(SERVER_ROOT) {
               console.log('question saved');
             }
           });
-          */
           return res.json(response);
         } );  
       }    
