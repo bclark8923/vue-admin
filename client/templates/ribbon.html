@@ -1,0 +1,60 @@
+
+<form class="smart-form row">
+  <span class="queryInfo">Users that have</span>
+
+    <section class="col col-2">
+      <label class="select">
+        <select name="interested" class="valid">
+          <option value="1">Visited</option>
+          <option value="1">Tapped</option>
+          <option value="2">Scrolled</option>
+        </select> <i></i>
+      </label>
+    </section>
+
+  <span class="queryInfo">the</span>
+
+    <section class="col col-2">
+      <label class="select">
+        <select name="interested" class="valid">
+          <option>app</option>
+          <option>page</option>
+          <option>button</option>
+        </select> <i></i>
+      </label>
+    </section>
+
+    <section class="col col-2">
+      <label class="select">
+        <select name="interested" class="valid">
+          <option query-object="page">FoodLog</option>
+          <option query-object="page">FitnessLog</option>
+          <option query-object="page">MeasurementLog</option>
+          <option query-object="button">Add Food - FoodLog</option>
+          <option query-object="button">Confirm - AddFoodLog</option>
+          <option query-object="button">Cancel - AddFoodLog</option>
+        </select> <i></i>
+      </label>
+    </section>
+
+  <span class="queryInfo">since</span>
+  <section class="col col-3" style="margin:0">
+    <label class="input">
+      <i class="icon-append fa fa-calendar" ng-click="open($event)"></i>
+      <input type="text" class="hasDatepicker"
+            id="finishdate"
+            datepicker-popup="dd-MMMM-yyyy"
+            ng-model="dt"
+            is-open="opened"
+            min="minDate"
+            max="'2015-06-22'"
+            datepicker-options="dateOptions"
+            date-disabled="disabled(date, mode)"
+            ng-required="true"
+            close-text="Close" />
+    </label>
+  </section>
+  <button type="button" class="btn btn-sm btn-primary">
+    SUBMIT
+  </button>
+</form>
