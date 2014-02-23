@@ -4,6 +4,7 @@ angular.module('app.controllers')
 .controller('DashboardCtrl', function($scope, $modal, Questions, _) {
 
 
+
   $scope.questions = function() {
     return Questions.getReduced();//pagination($scope.currentPage);
   };
