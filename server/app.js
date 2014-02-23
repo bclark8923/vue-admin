@@ -107,18 +107,17 @@ module.exports = function(SERVER_ROOT) {
     console.log('QuestionID: ', req.params.questionID);
     console.log('Answer: ', req.body.answer);
     var ObjectID = mongodb.ObjectID;
-    return req.body;
 
     database.questions().update({_id:new ObjectID(req.params.questionID)}, {$set: {answer: req.body.answer}}, function(err, saved) {
       if( err || !saved ) {
         console.log('answer not saved');
         return res.json({
-          success: req.body
+          success: false
         });
       } else {
         console.log('answer saved');
         return res.json({
-          success: req.body
+          success: true
         });
       }
     });
