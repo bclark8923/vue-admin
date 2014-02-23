@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('SessionsCtrl', function($scope, $modal, Questions, _) {
+.controller('SessionsCtrl', function($scope, $modal, $location, Questions, _) {
 
 
   Questions.sync().then(function() {
@@ -58,6 +58,10 @@ angular.module('app.controllers')
     }
   };
 
+
+  $scope.goSessionID = function(sessionID) {
+    $location.path('/sessions/'+sessionID);
+  };
 
   $scope.openModal = function(selection) {
     $modal.open({

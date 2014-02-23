@@ -1,5 +1,6 @@
 var NODE_ENV = process.env.NODE_ENV = (process.env.NODE_ENV || 'production');
 var PORT = process.env.PORT = (process.env.PORT || 3000);
+var _ = require('underscore');
 var express = require('express');
 var stylus = require('stylus');
 var path = require('path');
@@ -52,11 +53,11 @@ module.exports = function(SERVER_ROOT) {
     var response = {askUser:false};
     database.questions().find({deviceID: req.params.deviceID + '', asked: false}, function(err, questions) {
       if( err || questions.length === 0) {
-        console.log("no questions found");
+        console.log('no questions found');
         return res.json(response);
-      } 
+      }
       else {
-        console.log("questions found");
+        console.log('questions found');
         questions.forEach( function(question) {
           //console.log(question);
           response = {
@@ -72,8 +73,8 @@ module.exports = function(SERVER_ROOT) {
             }
           });
           return res.json(response);
-        } );  
-      }    
+        } );
+      }
     });
 
   });
@@ -89,15 +90,9 @@ module.exports = function(SERVER_ROOT) {
   app.get('/api/sessions/:sessionID', function(req, res) {
     console.log('Sessions: ');
     var sessions = database.get('sessions');
-    sessions.forEach( function(session) {
-      if(session.sessionID === parseInt(req.params.sessionID)) {
-        console.log("match");
-        thisSession = session;
-        return res.json(session);
-      }
-    });
-
-    return res.json({});
+    var session = _.findWhere(sessions, {sessionID: +req.params.sessionID});
+    console.log('session', session);
+    return res.json(session);
 
   });
 
