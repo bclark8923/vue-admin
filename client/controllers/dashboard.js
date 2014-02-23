@@ -7,6 +7,6 @@ angular.module('app.controllers')
 
   $scope.realtime = true;
 
-  $scope.questions = Questions.first;
+  $scope.questions = Questions.get;
 
 });
