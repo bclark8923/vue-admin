@@ -58,7 +58,7 @@ angular.module('app')
   Pushes.sync();
   $interval(function() {
     Pushes.sync();
-  }, 3000);
+  }, 6000);
 
   $rootScope.isActive = function(state) {
     return ($route.current && $route.current.state) ? $route.current.state === state : null;
