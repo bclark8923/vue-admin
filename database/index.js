@@ -1,9 +1,15 @@
 'use strict';
-var sessions = require('./sessions.json');
+var database = {
+  sessions: require('./sessions.json')
+};
+
 module.exports = function(app, config) {
   var DB = {
+    get: function(data) {
+      return database[data];
+    },
     sessions: function() {
-      return sessions;
+      return database.sessions;
     }
   };
 

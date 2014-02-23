@@ -14,5 +14,6 @@ angular.module('app.dependencies', [
   'ngRoute',
   'ngAnimate',
   'ui.utils',
+  'ui.bootstrap',
   'chieffancypants.loadingBar'
 ]);
