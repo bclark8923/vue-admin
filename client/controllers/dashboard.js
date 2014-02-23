@@ -5,7 +5,7 @@ angular.module('app.controllers')
 
 
   $scope.questions = function() {
-    return Questions.pagination($scope.currentPage);
+    return Questions.getReduced();//pagination($scope.currentPage);
   };
 
   Questions.sync().then(function() {

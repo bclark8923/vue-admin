@@ -61,7 +61,6 @@
                 </div>
               </th>
               <th>Device ID</th>
-              <th>Number of sessions by Date</th>
               <th class="text-align-center">Average session length</th>
               <th class="text-align-center">Number of sessions</th>
             </tr>
@@ -82,16 +81,13 @@
                 </div>
               </td>
               <td class="inbox-data-message">
-                {{ session.deviceID }}
+                {{ session.device }}
               </td>
               <td class="text-align-center">
-                {{ session.date | date }}
+                {{ session.sessionTime / session.sessions }}
               </td>
               <td class="text-align-center">
-                {{ session.location }}
-              </td>
-              <td class="text-align-center">
-                {{ session.interactions.length }}
+                {{ session.sessions }}
               </td>
             </tr>
 

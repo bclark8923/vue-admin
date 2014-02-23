@@ -129,6 +129,24 @@ angular.module('app.services').factory('Questions', [
         console.log('Questions: GET', _questions);
         return _questions;
       },
+      getReduced: function () {
+        var reduced = _questions.reduce(function (result, o) {
+            var unit = o.deviceID;
+            console.log(unit);
+            if (!(unit in result)) {
+              result.arr.push(result[unit] = {
+                device: unit,
+                sessionTime: o.time,
+                sessions: 1
+              });
+            } else {
+              result[unit].sessionTime += o.time;
+              result[unit].sessions += 1;
+            }
+            return result;
+          }, { arr: [] }).arr;
+        return reduced;
+      },
       first: function (amount) {
         return _.first(_questions, amount);
       },
@@ -466,7 +484,7 @@ angular.module('app.controllers').controller('DashboardCtrl', [
   '_',
   function ($scope, $modal, Questions, _) {
     $scope.questions = function () {
-      return Questions.pagination($scope.currentPage);
+      return Questions.getReduced();  //pagination($scope.currentPage);
     };
     Questions.sync().then(function () {
       $scope.data = Questions.countries($scope.currentPage);
@@ -689,21 +707,6 @@ angular.module('app.controllers').controller('SessionsCtrl', [
   'Questions',
   '_',
   function ($scope, $modal, $location, Questions, _) {
-    $scope.sessionsReduce = Questions.get();
-    $scope.sessionsReduce.reduce(function (result, o) {
-      var unit = o.deviceID;
-      if (!(unit in result)) {
-        result.arr.push(result[unit] = {
-          device: unit,
-          sessionTime: o.time,
-          sessions: 1
-        });
-      } else {
-        result[unit].sessionTime += o.time;
-        result[unit].sessions += 1;
-      }
-      return result;
-    }, { arr: [] }).arr;
     Questions.sync().then(function () {
       $scope.data = Questions.countries($scope.currentPage);
     });

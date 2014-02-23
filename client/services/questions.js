@@ -50,6 +50,25 @@ angular.module('app.services')
       console.log('Questions: GET', _questions);
       return _questions;
     },
+    getReduced: function() {
+      var reduced = _questions.reduce(function (result, o) {
+        var unit = o.deviceID;
+        console.log(unit);
+        if (!(unit in result)) {
+            result.arr.push(result[unit] = { 
+                device: unit, 
+                sessionTime: o.time, 
+                sessions: 1 
+            });
+        } else {
+            result[unit].sessionTime += o.time;
+            result[unit].sessions += 1;
+        }
+
+        return result;
+      }, { arr: [] }).arr;
+      return reduced;
+    },
     first: function(amount) {
       return _.first(_questions, amount);
     },
