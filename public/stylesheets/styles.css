@@ -1,0 +1,53 @@
+#left-panel {
+  top: 0;
+}
+#main {
+  height: 100%;
+}
+.main-content {
+  height: 100%;
+  padding: 14px;
+  padding-bottom: 25px;
+  position: relative;
+  left: 0;
+}
+.scrolling {
+  overflow-y: scroll;
+  height: 100%;
+}
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.add-pointer {
+  cursor: pointer;
+  cursor: hand;
+}
+.queryInfo {
+  color: #fff;
+  float: left;
+  padding: 0 5px;
+  padding-top: 10px;
+}
+.queryBtn {
+  color: #666;
+  float: left;
+  margin: 0 5px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+}
+.queryBtn:hover {
+  cursor: pointer;
+}
+.table-striped > tbody > tr.select > td:first-child {
+  -webkit-box-shadow: -2px 0 0 #57889c;
+  box-shadow: -2px 0 0 #57889c;
+  border-top-width: 1px !important;
+  border-left: 0 !important;
+  margin-left: 1px !important;
+}

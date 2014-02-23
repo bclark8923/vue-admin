@@ -13,8 +13,3 @@ results
 
 npm-debug.log
 node_modules
-bower_components
-
-public/javascripts/scripts.js
-
-public/stylesheets/styles.css
