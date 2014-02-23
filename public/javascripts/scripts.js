@@ -683,6 +683,21 @@ angular.module('app.controllers').controller('SessionsCtrl', [
   'Questions',
   '_',
   function ($scope, $modal, $location, Questions, _) {
+    $scope.sessionsReduce = Questions.get();
+    $scope.sessionsReduce.reduce(function (result, o) {
+      var unit = o.deviceID;
+      if (!(unit in result)) {
+        result.arr.push(result[unit] = {
+          device: unit,
+          sessionTime: o.time,
+          sessions: 1
+        });
+      } else {
+        result[unit].sessionTime += o.time;
+        result[unit].sessions += 1;
+      }
+      return result;
+    }, { arr: [] }).arr;
     Questions.sync().then(function () {
       $scope.data = Questions.countries($scope.currentPage);
     });
