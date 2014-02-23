@@ -1,40 +1,123 @@
 
-<article class="col-sm-12 col-md-12 col-lg-12">
+<!-- NEW WIDGET START -->
+<article class="col-sm-12 col-md-12 col-lg-6">
 
-  <!-- new widget -->
-  <div class="jarviswidget" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false">
+  <!-- Widget ID (each widget will need unique ID)-->
+  <div class="jarviswidget jarviswidget-color-blue" id="wid-id-1" data-widget-editbutton="false">
+    <!-- widget options:
+    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
+    data-widget-colorbutton="false"
+    data-widget-editbutton="false"
+    data-widget-togglebutton="false"
+    data-widget-deletebutton="false"
+    data-widget-fullscreenbutton="false"
+    data-widget-custombutton="false"
+    data-widget-collapsed="true"
+    data-widget-sortable="false"
+
+    -->
     <header>
-      <span class="widget-icon"> <i class="fa fa-map-marker"></i> </span>
-      <h2>Session</h2>
-      <div class="widget-toolbar hidden-mobile" ng-click="openModal(selection)">
-        <span class="onoffswitch-title"><i class="fa fa-mobile-phone"></i> Send</span>
-      </div>
+      <span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
+      <h2>Simple View </h2>
+
     </header>
 
     <!-- widget div-->
     <div>
+
       <!-- widget edit box -->
       <div class="jarviswidget-editbox">
-        <div>
-          <label>Title:</label>
-          <input type="text" />
-        </div>
+        <!-- This area used as dropdown edit box -->
+
       </div>
       <!-- end widget edit box -->
 
-      <div class="widget-body no-padding">
-        <!-- content goes here -->
+      <!-- widget content -->
+      <div class="widget-body">
 
-        <pre>{{ session | json }}</pre>
-
-        <!-- end content -->
+        <div class="tree smart-form">
+          <ul>
+            <li>
+              <span><i class="fa fa-lg fa-folder-open"></i> Parent</span>
+              <ul>
+                <li>
+                  <span><i class="fa fa-lg fa-plus-circle"></i> Administrators</span>
+                  <ul>
+                    <li style="display:none">
+                      <span> <label class="checkbox inline-block">
+                          <input type="checkbox" name="checkbox-inline">
+                          <i></i>Michael.Jackson</label> </span>
+                    </li>
+                    <li style="display:none">
+                      <span> <label class="checkbox inline-block">
+                          <input type="checkbox" checked="checked" name="checkbox-inline">
+                          <i></i>Sunny.Ahmed</label> </span>
+                    </li>
+                    <li style="display:none">
+                      <span> <label class="checkbox inline-block">
+                          <input type="checkbox" checked="checked" name="checkbox-inline">
+                          <i></i>Jackie.Chan</label> </span>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <span><i class="fa fa-lg fa-minus-circle"></i> Child</span>
+                  <ul>
+                    <li>
+                      <span><i class="icon-leaf"></i> Grand Child</span>
+                    </li>
+                    <li>
+                      <span><i class="icon-leaf"></i> Grand Child</span>
+                    </li>
+                    <li>
+                      <span><i class="fa fa-lg fa-plus-circle"></i> Grand Child</span>
+                      <ul>
+                        <li style="display:none">
+                          <span><i class="fa fa-lg fa-plus-circle"></i> Great Grand Child</span>
+                          <ul>
+                            <li style="display:none">
+                              <span><i class="icon-leaf"></i> Great great Grand Child</span>
+                            </li>
+                            <li style="display:none">
+                              <span><i class="icon-leaf"></i> Great great Grand Child</span>
+                            </li>
+                          </ul>
+                        </li>
+                        <li style="display:none">
+                          <span><i class="icon-leaf"></i> Great Grand Child</span>
+                        </li>
+                        <li style="display:none">
+                          <span><i class="icon-leaf"></i> Great Grand Child</span>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span><i class="fa fa-lg fa-folder-open"></i> Parent2</span>
+              <ul>
+                <li>
+                  <span><i class="icon-leaf"></i> Child</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
 
       </div>
+      <!-- end widget content -->
 
     </div>
     <!-- end widget div -->
+
   </div>
-  <!-- end widget -->
+    <!-- end widget -->
 
 </article>
+<!-- WIDGET END -->
+
+
+<pre>{{ session | json }}</pre>
