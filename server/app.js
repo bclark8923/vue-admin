@@ -62,7 +62,7 @@ module.exports = function(SERVER_ROOT) {
 
   app.get('/api/sessions', function(req, res) {
     console.log('Sessions: ');
-    var sessions = database.sessions;
+    var sessions = database.get('sessions');
 
     return res.json(sessions);
 
