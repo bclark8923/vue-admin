@@ -96,14 +96,15 @@ angular.module('app.services').factory('Questions', [
         console.log('Questions: SYNC', _questions);
         var dfd = $q.defer();
         if (!cache[_pages.length]) {
-          cache[_pages.length] = $http.get('/api/sessions').success(function (sessions, length) {
+          $http.get('/api/sessions').success(function (sessions, length) {
             console.log('Questions: success', sessions, length);
             _pages['0'] = sessions.slice(0, 20);
             _pages['1'] = sessions.slice(20, 40);
             _pages['2'] = sessions.slice(40, 60);
             _pages['3'] = sessions.slice(80, 100);
             _questions = _pages[self.page];
-            dfd.resolve(_questions);
+            cache[_pages.length] = _questions;
+            dfd.resolve(cache[_pages.length]);
           });
         } else {
           dfd.resolve(cache[_pages.length]);
