@@ -1,22 +1,66 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('DashboardCtrl', function($scope, $modal, Questions) {
+.controller('DashboardCtrl', function($scope, $modal, Questions, _) {
 
   Questions.sync().then(function() {
     $scope.data = Questions.countries($scope.currentPage);
   });
 
+  $scope.selection = [];
   $scope.currentPage = Questions.page;
   $scope.pages = Questions.pages;
 
   $scope.realtime = true;
 
 
-  $scope.send = function() {
+  $scope.addSelection = function(session) {
+    if (!_.contains($scope.selection, session.sessionID)) {
+      $scope.selection.push(session.sessionID);
+    }
+  };
+
+  $scope.removeSelection = function(session) {
+    var index = $scope.selection.indexOf(session.sessionID);
+    if (index !== -1) {
+      $scope.selection.splice(index, 1);
+    }
+  };
+
+
+  $scope.toggleAll = function(collection, toggle) {
+    console.log('Toggle All', collection);
+    _.each(collection, function(item) {
+      if (toggle) {
+        item.checked = false;
+        $scope.removeSelection(item);
+      } else {
+        item.checked = true;
+        $scope.addSelection(item);
+      }
+    });
+  };
+
+  $scope.checkSelection = function(session) {
+    if (!session.checked) {
+      session.checked = true;
+      $scope.addSelection(session);
+    } else {
+      session.checked = false;
+      $scope.removeSelection(session);
+    }
+  };
+
+
+  $scope.send = function(selection) {
     $modal.open({
       templateUrl: 'templates/modal.html',
-      controller: 'ModalInstanceCtrl'
+      controller: 'ModalInstanceCtrl',
+      resolve: {
+        sessions: function() {
+          return selection;
+        }
+      }
     }).result
     .then(function () {
 
@@ -24,10 +68,14 @@ angular.module('app.controllers')
   };
 
 
+
+
   $scope.$watch('currentPage', function() {
     $scope.data = Questions.countries($scope.currentPage);
+    $scope.selectAll = false;
     console.log('Questions.countries', $scope.data);
   });
+
 
   $scope.checkPage = function(page) {
     return $scope.currentPage === page;
