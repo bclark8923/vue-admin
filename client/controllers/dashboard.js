@@ -15,13 +15,13 @@ angular.module('app.controllers')
 
 
   $scope.addSelection = function(session) {
-    if (!_.contains($scope.selection, session.sessionID)) {
-      $scope.selection.push(session.sessionID);
+    if (!_.contains($scope.selection, session.deviceID)) {
+      $scope.selection.push(session.deviceID);
     }
   };
 
   $scope.removeSelection = function(session) {
-    var index = $scope.selection.indexOf(session.sessionID);
+    var index = $scope.selection.indexOf(session.deviceID);
     if (index !== -1) {
       $scope.selection.splice(index, 1);
     }
@@ -52,22 +52,24 @@ angular.module('app.controllers')
   };
 
 
-  $scope.send = function(selection) {
+  $scope.openModal = function(selection) {
     $modal.open({
       templateUrl: 'templates/modal.html',
       controller: 'ModalInstanceCtrl',
       resolve: {
-        sessions: function() {
+        devices: function() {
           return selection;
         }
       }
     }).result
-    .then(function () {
-
+    .then(function() {
+      console.log('End Modal');
+      _.each($scope.pages(), function(collection) {
+        $scope.toggleAll(collection, true);
+        $scope.selectAll = false;
+      });
     });
   };
-
-
 
 
   $scope.$watch('currentPage', function() {

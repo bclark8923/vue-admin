@@ -1,13 +1,19 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('ModalInstanceCtrl', function($scope, $modalInstance, sessions) {
-  console.log('Modal', sessions);
+.controller('ModalInstanceCtrl', function($scope, $modalInstance, $http, devices) {
+  console.log('Modal', devices);
 
-  $scope.sessions = sessions;
+  $scope.devices = devices;
 
-  $scope.ok = function () {
-    $modalInstance.close(/* saved data */);
+  $scope.send = function(message) {
+    $http.post('/api/questions', {message: message, devices: devices})
+    .success(function() {
+
+    })
+    .finally(function() {
+      $modalInstance.close(/* saved data */);
+    })
   };
 
   $scope.cancel = function () {

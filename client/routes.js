@@ -7,7 +7,7 @@ angular.module('app')
   var baseTemplateUrl = '/templates';
   $routeProvider
   .when('/', {
-    templateUrl: baseTemplateUrl + '/index.html',
+    templateUrl: baseTemplateUrl + '/dashboard.html',
     controller: 'DashboardCtrl',
     state: 'dashboard'
   })
