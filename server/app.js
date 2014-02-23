@@ -5,6 +5,7 @@ var stylus = require('stylus');
 var path = require('path');
 var cors = require('cors');
 var config = require('./config.json')[NODE_ENV];
+var mongodb = require('mongodb');
 
 module.exports = function(SERVER_ROOT) {
   var app = express();
@@ -49,19 +50,30 @@ module.exports = function(SERVER_ROOT) {
     console.log('Device: ', req.params.deviceID);
 
     var response = {askUser:false};
-    database.questions().find({deviceID: req.params.deviceID + '', askUser: false}, function(err, users) {
-      if( err || !users) console.log("No questions found");
-      else users.forEach( function(question) {
-        console.log(question);
-        response = {
-          askUser: true,
-          question: quesion.question,
-          id: question.ObjectId
-        }
+    database.questions().find({deviceID: req.params.deviceID + '', asked: false}, function(err, questions) {
+      if( err || questions.length === 0) {
+        console.log("no questions found");
         return res.json(response);
-      } );
-
-      return res.json(response);
+      } 
+      else {
+        console.log("questions found");
+        questions.forEach( function(question) {
+          //console.log(question);
+          response = {
+            askUser: true,
+            question: questions[0].question,
+            id: question._id
+          }
+          database.questions().update({_id:question._id}, {$set: {asked: true}}, function(err, saved) {
+            if( err || !saved ) {
+              console.log('question not saved');
+            } else {
+              console.log('question saved');
+            }
+          });
+          return res.json(response);
+        } );  
+      }    
     });
 
   });
@@ -72,6 +84,26 @@ module.exports = function(SERVER_ROOT) {
 
     return res.json(sessions);
 
+  });
+
+  app.post('/api/questions/:questionID', function(req, res) {
+    console.log('QuestionID: ', req.params.questionID);
+    console.log('Answer: ', req.body.answer);
+    var ObjectID = mongodb.ObjectID;
+
+    database.questions().update({_id:new ObjectID(req.params.questionID)}, {$set: {answer: req.body.answer}}, function(err, saved) {
+      if( err || !saved ) {
+        console.log('answer not saved');
+        return res.json({
+          success: false
+        });
+      } else {
+        console.log('answer saved');
+        return res.json({
+          success: true
+        });
+      }
+    });
   });
 
   app.post('/api/questions', function(req, res) {
