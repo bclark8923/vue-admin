@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development nodemon server.js"
   },
-"authors": [
+  "authors": [
     "gdi2290 <github@gdi2290.com>",
     "bclark8923"
   ],
@@ -43,6 +43,7 @@
     "gulp-stylus": "0.0.11",
     "gulp-uglify": "~0.2.1",
     "gulp-livereload": "~0.3.2",
-    "tiny-lr": "0.0.5"
+    "tiny-lr": "0.0.5",
+    "mongojs": "~0.10.0"
   }
 }
