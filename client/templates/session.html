@@ -39,22 +39,22 @@
         <div class="tree smart-form">
           <ul>
             <li ng-repeat="parent in session.interactionsTree track by $index">
-              <span><i class="fa fa-lg fa-folder-open"></i> {{ parent }}</span>
+              <span><i class="fa fa-lg fa-mobile"></i> {{ parent }}</span>
               <ul>
                 <li ng-repeat="interaction in session.interactions | slice:$index:interaction.$parent.$index | filter:{page:parent}">
                   <span ng-show="interaction.object === 'UIView'">
-                    <i class="fa fa-lg fa-plus-circle"></i>
-                    {{ interaction.time }} {{ interaction.page }} {{ interaction.type }}
-                  </span>
+                    <i class="fa fa-lg fa-clock-o"></i>
+                    At <b>{{ interaction.time }}</b> <small>seconds</small> the user <b>{{ interaction.type }}</b> <b>{{ parent }}
+</b>                  </span>
 
                   <span ng-show="interaction.object === 'UIButton'">
-                    <i class="fa fa-lg fa-plus-circle"></i>
-                    {{ interaction.time }} {{ interaction.page }} {{ interaction.type }}
+                    <i class="fa fa-lg fa-clock-o"></i>
+                    At <b>{{ interaction.time }}</b> <small>seconds</small> the user <b>{{ interaction.type }}</b> <b>{{ parent }} </b><b>{{ interaction.name }}</b>
                   </span>
                   <span ng-show="interaction.object === 'UIScrollView'">
-                    <i class="fa fa-lg fa-plus-circle"></i>
-                    {{ interaction.time }} {{ interaction.page }} {{ interaction.type }}
-                  </span>
+                    <i class="fa fa-lg fa-clock-o"></i>
+                    At <b>{{ interaction.time }}</b> <small>seconds</small> the user <b>{{ interaction.type }}</b> <b>{{ parent }}
+</b>                  </span>
 <!--
                   <ul>
                     <li style="display:none">
@@ -127,5 +127,3 @@
 </article>
 <!-- WIDGET END -->
 
-
-<pre>{{ session | json }}</pre>
