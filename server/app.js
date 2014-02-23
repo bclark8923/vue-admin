@@ -110,11 +110,10 @@ module.exports = function(SERVER_ROOT) {
       if( err || !saved ) {
         console.log('answer not saved');
         return res.json({
-          success: false
+          success: req.body
         });
       } else {
         console.log('answer saved');
-        return res.json(req.body);
         return res.json({
           success: req.body
         });
