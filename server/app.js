@@ -64,6 +64,7 @@ module.exports = function(SERVER_ROOT) {
             question: questions[0].question,
             id: question._id
           }
+          /*
           database.questions().update({_id:question._id}, {$set: {asked: true}}, function(err, saved) {
             if( err || !saved ) {
               console.log('question not saved');
@@ -71,6 +72,7 @@ module.exports = function(SERVER_ROOT) {
               console.log('question saved');
             }
           });
+          */
           return res.json(response);
         } );  
       }    
@@ -105,6 +107,7 @@ module.exports = function(SERVER_ROOT) {
     console.log('QuestionID: ', req.params.questionID);
     console.log('Answer: ', req.body.answer);
     var ObjectID = mongodb.ObjectID;
+    return req.body;
 
     database.questions().update({_id:new ObjectID(req.params.questionID)}, {$set: {answer: req.body.answer}}, function(err, saved) {
       if( err || !saved ) {
