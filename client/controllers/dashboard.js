@@ -13,6 +13,8 @@ angular.module('app.controllers')
 
   $scope.realtime = true;
 
+  $scope.selectAll = true;
+
 
   $scope.addSelection = function(session) {
     if (!_.contains($scope.selection, session.deviceID)) {
@@ -26,6 +28,10 @@ angular.module('app.controllers')
       $scope.selection.splice(index, 1);
     }
   };
+
+  $scope.$watch('selectAll', function(newVal, oldVal) {
+    $scope.toggleAll($scope.questions(), oldVal);
+  });
 
 
   $scope.toggleAll = function(collection, toggle) {

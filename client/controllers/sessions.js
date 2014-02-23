@@ -3,6 +3,7 @@
 angular.module('app.controllers')
 .controller('SessionsCtrl', function($scope, $modal, Questions, _) {
 
+
   Questions.sync().then(function() {
     $scope.data = Questions.countries($scope.currentPage);
   });
@@ -12,6 +13,8 @@ angular.module('app.controllers')
   $scope.pages = Questions.pages;
 
   $scope.realtime = true;
+
+  $scope.selectAll = true;
 
 
   $scope.addSelection = function(session) {
@@ -26,6 +29,10 @@ angular.module('app.controllers')
       $scope.selection.splice(index, 1);
     }
   };
+
+  $scope.$watch('selectAll', function(newVal, oldVal) {
+    $scope.toggleAll($scope.questions(), oldVal);
+  });
 
 
   $scope.toggleAll = function(collection, toggle) {
