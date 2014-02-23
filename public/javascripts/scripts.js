@@ -59,6 +59,29 @@ angular.module('app.filters', []).filter('slice', function () {
 angular.module('app.services', []);
 'use strict';
 /* Services */
+angular.module('app.services').factory('Pushes', [
+  '$http',
+  '$q',
+  '_',
+  function ($http, $q, _) {
+    var _pushes = [];
+    return {
+      sync: function () {
+        var dfd = $q.defer();
+        $http.get('/api/questions').success(function (questions) {
+          _pushes = questions;
+          dfd.resolve(_pushes);
+        });
+        return dfd.promise;
+      },
+      get: function () {
+        return _pushes;
+      }
+    };
+  }
+]);
+'use strict';
+/* Services */
 angular.module('app.services').factory('Questions', [
   '$http',
   '$q',
@@ -548,7 +571,9 @@ angular.module('app.controllers').controller('ModalInstanceCtrl', [
 'use strict';
 angular.module('app.controllers').controller('PushesCtrl', [
   '$scope',
-  function ($scope) {
+  'Pushes',
+  function ($scope, Pushes) {
+    $scope.pushes = Pushes.get;
   }
 ]);
 'use strict';
@@ -802,16 +827,25 @@ angular.module('app').config([
     }).when('/pushes', {
       templateUrl: baseTemplateUrl + '/pushes.html',
       controller: 'PushesCtrl',
-      state: 'pushes'
+      state: 'pushes',
+      resolve: {
+        pushes: function (Pushes) {
+          return Pushes.sync();
+        }
+      }
     }).otherwise({ redirectTo: '/' });
   }
 ]).run([
   '$rootScope',
   '$routeParams',
   '$route',
-  function ($rootScope, $routeParams, $route) {
+  'Pushes',
+  function ($rootScope, $routeParams, $route, Pushes) {
     $rootScope.$route = $route;
     $rootScope.$routeParams = $routeParams;
+    $rootScope.pushesCount = function () {
+      return Pushes.get().length;
+    };
     $rootScope.isActive = function (state) {
       return $route.current && $route.current.state ? $route.current.state === state : null;
     };
