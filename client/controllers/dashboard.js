@@ -4,8 +4,7 @@ angular.module('app.controllers')
 .controller('DashboardCtrl', function($scope, Questions) {
 
   Questions.sync().then(function() {
-    console.log('Questions.countries', Questions.countries());
-    $scope.data = Questions.countries();
+    $scope.data = Questions.countries($scope.currentPage);
   });
 
   $scope.currentPage = Questions.page;
@@ -16,7 +15,8 @@ angular.module('app.controllers')
 
 
   $scope.$watch('currentPage', function() {
-    $scope.data = Questions.countries();
+    $scope.data = Questions.countries($scope.currentPage);
+    console.log('Questions.countries', $scope.data);
   });
 
   $scope.checkPage = function(page) {

@@ -33,9 +33,10 @@ angular.module('app.services')
     pagination: function(page) {
       return _pages[page];
     },
-    countries: function() {
+    countries: function(page) {
+      var self = this;
       var countries = {};
-      _.each(this.pagination(this.page), function(obj) {
+      _.each(self.pagination(page), function(obj) {
         countries[obj.country] = (!countries[obj.country]) ? 1 : ++countries[obj.country];
       });
       return countries;
