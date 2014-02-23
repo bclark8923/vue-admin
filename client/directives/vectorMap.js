@@ -14,8 +14,8 @@ angular.module('app.directives')
 
       function renderVectorMap() {
         element.vectorMap({
-          map: 'world_mill_en',
-          backgroundColor: '#fff',
+          map: attrs.map || 'world_mill_en',
+          backgroundColor: attrs.backgroundColor || '#fff',
           regionStyle: {
             initial: {
               fill: '#c4c4c4'
@@ -36,13 +36,16 @@ angular.module('app.directives')
               event.preventDefault();
             } else {
               var countrylbl = scope.data[code];
-              el.html(el.html() + ': ' + countrylbl + ' visits');
+              el.html(el.html() + ': ' + countrylbl + ' users');
             }
           }
         });
       }
 
-      scope.$watch('data', renderVectorMap);
+      scope.$watch('data', function() {
+        element.find('.jvectormap-container').remove();
+        renderVectorMap();
+      });
     }
   };
 
