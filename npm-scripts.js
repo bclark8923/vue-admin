@@ -37,8 +37,6 @@ function postpublish() {
 
 // npm install
 function preinstall() {
-  exec('npm install bower -g');
-  exec('npm install gulp -g');
   console.log(grey('npm preinstall script executed'));
 }
 function postinstall() {
