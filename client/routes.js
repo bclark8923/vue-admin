@@ -37,16 +37,24 @@ angular.module('app')
   .when('/pushes', {
     templateUrl: baseTemplateUrl + '/pushes.html',
     controller: 'PushesCtrl',
-    state: 'pushes'
+    state: 'pushes',
+    resolve: {
+      pushes: function(Pushes) {
+        return Pushes.sync();
+      }
+    }
   })
 
   .otherwise({
     redirectTo: '/'
   });
 })
-.run(function($rootScope, $routeParams, $route) {
+.run(function($rootScope, $routeParams, $route, Pushes) {
   $rootScope.$route = $route;
   $rootScope.$routeParams = $routeParams;
+  $rootScope.pushesCount = function() {
+    return Pushes.get().length;
+  };
 
   $rootScope.isActive = function(state) {
     return ($route.current && $route.current.state) ? $route.current.state === state : null;
