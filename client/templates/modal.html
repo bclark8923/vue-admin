@@ -6,7 +6,8 @@
   <div ng-repeat="deviceID in devices">
     ID: {{ deviceID }}
   </div>
-  <input type="text" ng-model="message">
+  <br>
+  <input type="text" ng-model="message" autofocus>
 </div>
 <div class="modal-footer">
   <button class="btn btn-primary" ng-click="send(message)">OK</button>

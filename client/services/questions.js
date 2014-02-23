@@ -22,7 +22,7 @@ angular.module('app.services')
           _pages['2'] = (sessions.slice(40, 60));
           _pages['3'] = (sessions.slice(80, 100));
           _questions = _pages[self.page];
-          cache[_pages.length] = _questions
+          cache[_pages.length] = _questions;
           dfd.resolve(cache[_pages.length]);
         });
       } else {
