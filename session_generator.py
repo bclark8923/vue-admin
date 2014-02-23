@@ -32,7 +32,7 @@ latitude = ["37.75", "37.75", "37.75", "37.75", "37.75", "22.28", "22.28", "22.2
 longitude = ["122.68", "122.68", "122.68", "122.68", "122.68", "114.15", "114.15", "114.15", "114.15", "114.15"]
 numDevices = len(devices)
 numSessions = 200
-numInteractions = 10
+numInteractions = 15
 
 print "["
 for num in range(1,numSessions):
@@ -57,7 +57,7 @@ for num in range(1,numSessions):
 
 	sessionTime = 0
 	randomInteraction = 0
-	for interactions in range(0,curInteractions):
+	for interactions in range(3,curInteractions):
 		#create an interaction
 		sessionTime += 3
 		lastRandomInteraction = randomInteraction
