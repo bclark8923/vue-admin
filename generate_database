@@ -1,0 +1,6 @@
+#!/bin/bash
+python session_generator.py > sessions_unformatted.json
+cat sessions_unformatted.json | python -mjson.tool > sessions.json
+cp sessions.json database
+rm sessions.json
+rm sessions_unformatted.json
