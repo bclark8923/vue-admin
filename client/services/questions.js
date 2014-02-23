@@ -3,27 +3,42 @@
 /* Services */
 angular.module('app.services')
 .factory('Questions', function($http, $q, _) {
+
   var _questions = [];
-  var cache = {};
+  var _pages = [];
+
   return {
     sync: function() {
+      var self = this;
       console.log('Questions: SYNC', _questions);
       var dfd = $q.defer();
 
       $http.get('/api/sessions')
       .success(function(sessions, length) {
         console.log('Questions: success', sessions, length);
-        cache[0] = _.sample(sessions, 20);
-        cache[1] = _.sample(sessions, 20);
-        cache[2] = _.sample(sessions, 20);
-        _questions = cache[0];
+        _pages.push(_.sample(sessions, 20));
+        _pages.push(_.sample(sessions, 20));
+        _pages.push(_.sample(sessions, 20));
+        _questions = _pages[self.page];
         dfd.resolve(_questions);
       });
 
+
       return dfd.promise;
     },
+    pages: function() {
+      return _pages;
+    },
+    page: 0,
     pagination: function(page) {
-      return cache[page];
+      return _pages[page];
+    },
+    countries: function() {
+      var countries = {};
+      _.each(this.pagination(this.page), function(obj) {
+        countries[obj.country] = (!countries[obj.country]) ? 1 : ++countries[obj.country];
+      });
+      return countries;
     },
     get: function() {
       console.log('Questions: GET', _questions);
