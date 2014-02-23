@@ -12,13 +12,13 @@ angular.module('app')
     state: 'dashboard',
     ribbon: true
   })
-/*
+
   .when('/sessions/:sessionID', {
     templateUrl: baseTemplateUrl + '/session.html',
     controller: 'SessionCtrl',
     state: 'sessions'
   })
-*/
+
   .when('/sessions', {
     templateUrl: baseTemplateUrl + '/sessions.html',
     controller: 'SessionsCtrl',
