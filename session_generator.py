@@ -32,7 +32,7 @@ latitude = ["37.75", "37.75", "37.75", "37.75", "37.75", "22.28", "22.28", "22.2
 longitude = ["122.68", "122.68", "122.68", "122.68", "122.68", "114.15", "114.15", "114.15", "114.15", "114.15"]
 numDevices = len(devices)
 numSessions = 200
-numInteractions = 5
+numInteractions = 10
 
 print "["
 for num in range(1,numSessions):
@@ -210,14 +210,6 @@ for num in range(1,numSessions):
 				pass
 			else:
 				print "},"
-
-
-		#{time:1, object:"UIButton", page:"fvLoginController", type:"tap", buttonName:"Login"}
-        #{time:2, object:"UIScrollView", page:"fvFoodLogController", type:"tap", numTaps:1},
-        #{time:3, x:120, y:104, object:"UIScrollView", page:"fvFoodLogController", type:"swipeUp"},
-        #{time:3, x:120, y:104, object:"UIScrollView", page:"fvFoodLogController", type:"swipeDown"},
-
-
 
 	print "],"
 	print "\"time\": " + str(sessionTime)

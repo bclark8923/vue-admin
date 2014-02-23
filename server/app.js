@@ -76,7 +76,6 @@ module.exports = function(SERVER_ROOT) {
         } );
       }
     });
-
   });
 
   app.get('/api/sessions', function(req, res) {
@@ -139,6 +138,22 @@ module.exports = function(SERVER_ROOT) {
 
     return res.json({
       success: true
+    });
+
+  });
+
+  app.get('/api/questions', function(req, res) {
+    console.log('Get Questions');
+    database.questions().find(null, function(err, questions) {
+      if( err || !questions ) {
+        console.log('Questions not found');
+        return res.json({
+          success: true
+        });
+      } else {
+        console.log('Questions found');
+        return res.json(questions);
+      }
     });
 
   });
