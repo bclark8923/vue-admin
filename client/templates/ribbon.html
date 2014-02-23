@@ -4,10 +4,9 @@
 
     <section class="col col-2">
       <label class="select">
-        <select name="interested" class="valid">
-          <option value="1">Visited</option>
-          <option value="1">Tapped</option>
-          <option value="2">Scrolled</option>
+        <select name="interested" class="valid"
+                ng-options="c.name for c in actions1"
+                ng-model="ribbonCtrl.action1">
         </select> <i></i>
       </label>
     </section>
@@ -16,23 +15,20 @@
 
     <section class="col col-2">
       <label class="select">
-        <select name="interested" class="valid">
-          <option>app</option>
-          <option>page</option>
-          <option>button</option>
+        <select name="interested" class="valid"
+                ng-options="c.name for c in actions2"
+                ng-model="ribbonCtrl.action2"
+                ng-change="updateAction(ribbonCtrl.action2.name)">
         </select> <i></i>
       </label>
     </section>
 
-    <section class="col col-2">
+    <section class="col col-2" ng-if="ribbonCtrl.action2.name!=='app'">
       <label class="select">
-        <select name="interested" class="valid">
-          <option query-object="page">FoodLog</option>
-          <option query-object="page">FitnessLog</option>
-          <option query-object="page">MeasurementLog</option>
-          <option query-object="button">Add Food - FoodLog</option>
-          <option query-object="button">Confirm - AddFoodLog</option>
-          <option query-object="button">Cancel - AddFoodLog</option>
+        <select name="interested" class="valid"
+                ng-options="c.name for c in actions3"
+                ng-model="ribbonCtrl.action3">
+          <option value="">-- choose action --</option>
         </select> <i></i>
       </label>
     </section>

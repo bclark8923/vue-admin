@@ -42,8 +42,8 @@
 <body ng-app="app">
 
   <aside id="left-panel" ng-include="'templates/aside.html'"></aside>
-  <div id="main" role="main">
-    <div id="ribbon" ng-if="$route.current.ribbon" ng-include="'templates/ribbon.html'" ng-controller="RibbonCtrl">
+  <div id="main" role="main" ng-controller="RibbonCtrl as ribbonCtrl">
+    <div id="ribbon" ng-if="$route.current.ribbon" ng-include="'templates/ribbon.html'">
 
     </div>
     <!-- END RIBBON -->
