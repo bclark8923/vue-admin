@@ -68,12 +68,11 @@ module.exports = function(SERVER_ROOT) {
 
   });
 
-  app.post('/api/question/:questionID', function(req, res) {
-    console.log('Question: ', req.params.questionID);
-    var response = +req.params.questionID;
+  app.post('/api/questions', function(req, res) {
+    console.log('Question: ', req.body.message, req.body.devices);
 
     return res.json({
-
+      success: true
     });
 
   });

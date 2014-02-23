@@ -3,12 +3,12 @@
 </div>
 <div class="modal-body">
   sessions
-  <div ng-repeat="sessionId in sessions">
-    ID: {{ sessionId }}
+  <div ng-repeat="deviceID in devices">
+    ID: {{ deviceID }}
   </div>
-  <input type="text" ng-model="questionessage">
+  <input type="text" ng-model="message">
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="send(questionessage)">OK</button>
+  <button class="btn btn-primary" ng-click="send(message)">OK</button>
   <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>
