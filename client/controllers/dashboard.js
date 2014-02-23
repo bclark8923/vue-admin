@@ -3,11 +3,15 @@
 angular.module('app.controllers')
 .controller('DashboardCtrl', function($scope, Questions) {
 
-  Questions.sync();
+  Questions.sync().then(function() {
+    console.log('Questions.countries', Questions.countries());
+  });
 
-  $scope.page = Questions.page;
+  $scope.currentPage = Questions.page;
+  $scope.pages = Questions.pages;
 
   $scope.realtime = true;
+
 
   $scope.data = {
     'US': 4977,
@@ -20,8 +24,29 @@ angular.module('app.controllers')
     'BD': 100
   };
 
+  $scope.checkPage = function(page) {
+    return $scope.currentPage === page;
+  };
+
+  $scope.changePage = function(page) {
+    $scope.currentPage = page;
+  };
+
+  $scope.nextPage = function() {
+    if ($scope.pages().length -1 > $scope.currentPage) {
+      ++$scope.currentPage;
+    }
+  };
+
+  $scope.previousPage = function() {
+    if ($scope.currentPage) {
+      --$scope.currentPage;
+    }
+  };
+
+
   $scope.questions = function() {
-    return Questions.pagination($scope.page);
+    return Questions.pagination($scope.currentPage);
   };
 
 });

@@ -91,21 +91,18 @@
           <tfoot>
             <tr>
               <td colspan=5>
-              <ul class="pagination pagination-xs no-margin">
-                <li class="prev disabled">
-                  <a href="#">Previous</a>
+              <ul class="pagination pagination-xs no-margin no-select">
+                <li class="prev" ng-class="{disabled: checkPage(0)}">
+                  <a ng-click="previousPage()">Previous</a>
                 </li>
-                <li ng-class="{active: page===0}">
-                  <a href="#" ng-click="page=0">1</a>
+
+                <li ng-repeat="page in pages()"
+                    ng-class="{active: checkPage($index)}">
+                  <a href="#" ng-click="changePage($index)">{{ $index+1 }}</a>
                 </li>
-                <li ng-class="{active: page===1}">
-                  <a href="#" ng-click="page=1">2</a>
-                </li>
-                <li ng-class="{active: page===2}">
-                  <a href="#" ng-click="page=2">3</a>
-                </li>
-                <li class="next">
-                  <a href="#">Next</a>
+
+                <li class="next" ng-class="{disabled: checkPage(pages().length - 1)}">
+                  <a ng-click="nextPage()">Next</a>
                 </li>
               </ul></td>
             </tr>

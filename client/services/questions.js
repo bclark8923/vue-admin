@@ -3,9 +3,9 @@
 /* Services */
 angular.module('app.services')
 .factory('Questions', function($http, $q, _) {
-  var _questions = [];
 
-  var _page = [];
+  var _questions = [];
+  var _pages = [];
 
   return {
     sync: function() {
@@ -16,19 +16,29 @@ angular.module('app.services')
       $http.get('/api/sessions')
       .success(function(sessions, length) {
         console.log('Questions: success', sessions, length);
-        _page.push(_.sample(sessions, 20));
-        _page.push(_.sample(sessions, 20));
-        _page.push(_.sample(sessions, 20));
-        _questions = _page[self.page];
+        _pages.push(_.sample(sessions, 20));
+        _pages.push(_.sample(sessions, 20));
+        _pages.push(_.sample(sessions, 20));
+        _questions = _pages[self.page];
         dfd.resolve(_questions);
       });
 
 
       return dfd.promise;
     },
+    pages: function() {
+      return _pages;
+    },
     page: 0,
     pagination: function(page) {
-      return _page[page];
+      return _pages[page];
+    },
+    countries: function() {
+      var countries = {};
+      _.each(this.pagination(this.page), function(obj) {
+        countries[obj.country] = (!countries[obj.country]) ? 1 : ++countries[obj.country];
+      });
+      return countries;
     },
     get: function() {
       console.log('Questions: GET', _questions);
