@@ -5,7 +5,7 @@
   <section class="col col-2">
     <label class="select">
       <select name="interested" class="valid"
-              ng-options="c.name for c in actions1"
+              ng-options="c.value as c.name for c in actions1"
               ng-model="ribbonCtrl.action1">
       </select> <i></i>
     </label>

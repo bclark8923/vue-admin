@@ -6,12 +6,12 @@ angular.module('app.controllers')
   var ribbonCtrl = this;
 
   $scope.actions1 = [
-    {name:'Visited'},
-    {name:'Tapped'},
-    {name:'Scrolled'},
+    {name:'Visited', value:''},
+    {name:'Tapped', value:'tap'},
+    {name:'Scrolled', value: 'swipe'},
   ];
 
-  ribbonCtrl.action1 = $scope.actions1[0];
+  ribbonCtrl.action1 = $scope.actions1[0].value;
 
 
   var action3 = {

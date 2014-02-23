@@ -459,6 +459,9 @@ angular.module('app.controllers').controller('DashboardCtrl', [
   'Questions',
   '_',
   function ($scope, $modal, Questions, _) {
+    $scope.questions = function () {
+      return Questions.pagination($scope.currentPage);
+    };
     Questions.sync().then(function () {
       $scope.data = Questions.countries($scope.currentPage);
     });
@@ -540,9 +543,6 @@ angular.module('app.controllers').controller('DashboardCtrl', [
         --$scope.currentPage;
       }
     };
-    $scope.questions = function () {
-      return Questions.pagination($scope.currentPage);
-    };
   }
 ]);
 'use strict';
@@ -584,11 +584,20 @@ angular.module('app.controllers').controller('RibbonCtrl', [
     console.log('Ribbon');
     var ribbonCtrl = this;
     $scope.actions1 = [
-      { name: 'Visited' },
-      { name: 'Tapped' },
-      { name: 'Scrolled' }
+      {
+        name: 'Visited',
+        value: ''
+      },
+      {
+        name: 'Tapped',
+        value: 'tap'
+      },
+      {
+        name: 'Scrolled',
+        value: 'swipe'
+      }
     ];
-    ribbonCtrl.action1 = $scope.actions1[0];
+    ribbonCtrl.action1 = $scope.actions1[0].value;
     var action3 = {
         'app': [{ name: 'FoodLog' }],
         'page': [

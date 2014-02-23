@@ -69,7 +69,9 @@
           <tbody>
             <tr class="add-pointer no-select tabs-left nav-tabs"
                 ng-class="{select: session.checked, highlight: session.checked}"
-                ng-repeat="session in questions()"
+                ng-repeat="session in questions()
+
+                "
                 ng-click="checkSelection(session)">
               <td class="inbox-table-icon">
                 <div class="checkbox">
@@ -106,7 +108,7 @@
 
                 <li ng-repeat="page in pages()"
                     ng-class="{active: checkPage($index)}">
-                  <a href="#" ng-click="changePage($index)">{{ $index+1 }}</a>
+                  <a ng-click="changePage($index)">{{ $index+1 }}</a>
                 </li>
 
                 <li class="next" ng-class="{disabled: checkPage(pages().length - 1)}">

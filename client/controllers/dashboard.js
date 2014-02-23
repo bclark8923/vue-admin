@@ -3,6 +3,11 @@
 angular.module('app.controllers')
 .controller('DashboardCtrl', function($scope, $modal, Questions, _) {
 
+
+  $scope.questions = function() {
+    return Questions.pagination($scope.currentPage);
+  };
+
   Questions.sync().then(function() {
     $scope.data = Questions.countries($scope.currentPage);
   });
@@ -103,11 +108,6 @@ angular.module('app.controllers')
     if ($scope.currentPage) {
       --$scope.currentPage;
     }
-  };
-
-
-  $scope.questions = function() {
-    return Questions.pagination($scope.currentPage);
   };
 
 });
