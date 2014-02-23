@@ -19,7 +19,7 @@
     -->
     <header>
       <span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
-      <h2>Simple View </h2>
+      <h2>Session {{ session.sessionID }} </h2>
 
     </header>
 
@@ -35,6 +35,13 @@
 
       <!-- widget content -->
       <div class="widget-body">
+
+        <h3 style="margin: 0;">Device ID: <span style="font-weight:100;">{{ session.deviceID }}</span></h3>
+        <h3 style="margin: 0;">Device Type: <span style="font-weight:100;">{{ session.deviceType }}</span></h3>
+        <h3 style="margin: 0;">Device OS: <span style="font-weight:100;">{{ session.deviceOS }}</span></h3>
+        <h3 style="margin: 0;">City: <span style="font-weight:100;">{{ session.city }}</span></h3>
+        <h3 style="margin: 0;">Country: <span style="font-weight:100;">{{ session.country }}</span></h3>
+        <h3 style="margin-top: 0;">Session Date: <span style="font-weight:100;">{{ session.date }}</span></h3>
 
         <div class="tree smart-form">
           <ul>
