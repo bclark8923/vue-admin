@@ -24,6 +24,7 @@ def randomDate(start, end, prop):
 
 
 devices = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+deviceType = ["iPhone 5, iOS 7.0.2", "iPhone 5, iOS 7.0.2", "iPhone 4s, iOS 7.0.2", "iPhone 4, iOS 7.0", "iPhone 5, iOS 7.0", "iPhone 4s, iOS 7.0.2", "iPhone 5, iOS 7.0", "iPhone 5, iOS 7.0.1", "iPhone 5s, iOS 7.0.1", "iPhone 5s, iOS 7.0.2"]
 cities = ["San Francisco", "Detroit", "Toronto", "London", "Leeds", "Hong Kong", "Hong Kong", "Hong Kong", "Shanghai", "Beijing"]
 countries = ["US", "US", "CA", "GB", "GB", "CN", "CN", "CN", "CN", "CN"]
 latitude = ["37.75", "37.75", "37.75", "37.75", "37.75", "22.28", "22.28", "22.28", "22.28", "22.28"]
@@ -45,6 +46,7 @@ for num in range(1,numSessions):
 
 	print "\"sessionID\": " + str(num) + ","
 	print "\"deviceID\": \"" + devices[curDevice] + "\","
+	print "\"deviceType\": \"" + deviceType[curDevice] + "\","
 
 	print "\"city\": \"" + cities[curDevice] + "\","
 	print "\"country\": \"" + countries[curDevice] + "\","
