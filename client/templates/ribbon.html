@@ -1,39 +1,41 @@
 
-<form class="smart-form row">
-  <span class="queryInfo">Users that have</span>
+<form class="smart-form row" style="padding-top: 5px;">
+  <div class="queryInfo"><div>Users that have</div></div>
 
-    <section class="col col-2">
-      <label class="select">
-        <select name="interested" class="valid"
-                ng-options="c.name for c in actions1"
-                ng-model="ribbonCtrl.action1">
-        </select> <i></i>
-      </label>
-    </section>
+  <section class="col col-2">
+    <label class="select">
+      <select name="interested" class="valid"
+              ng-options="c.name for c in actions1"
+              ng-model="ribbonCtrl.action1">
+      </select> <i></i>
+    </label>
+  </section>
 
-  <span class="queryInfo">the</span>
+  <div class="queryInfo" style="display:table-cell;vertical-align:middle">
+      the
+  </div>
 
-    <section class="col col-2">
-      <label class="select">
-        <select name="interested" class="valid"
-                ng-options="c.name for c in actions2"
-                ng-model="ribbonCtrl.action2"
-                ng-change="updateAction(ribbonCtrl.action2.name)">
-        </select> <i></i>
-      </label>
-    </section>
+  <section class="col col-2">
+    <label class="select">
+      <select name="interested" class="valid"
+              ng-options="c.name for c in actions2"
+              ng-model="ribbonCtrl.action2"
+              ng-change="updateAction(ribbonCtrl.action2.name)">
+      </select> <i></i>
+    </label>
+  </section>
 
-    <section class="col col-2" ng-if="ribbonCtrl.action2.name!=='app'">
-      <label class="select">
-        <select name="interested" class="valid"
-                ng-options="c.name for c in actions3"
-                ng-model="ribbonCtrl.action3">
-          <option value="">-- choose action --</option>
-        </select> <i></i>
-      </label>
-    </section>
+  <section class="col col-2" ng-if="ribbonCtrl.action2.name!=='app'">
+    <label class="select">
+      <select name="interested" class="valid"
+              ng-options="c.name for c in actions3"
+              ng-model="ribbonCtrl.action3">
+        <option value="">-- choose action --</option>
+      </select> <i></i>
+    </label>
+  </section>
 
-  <span class="queryInfo">since</span>
+  <div class="queryInfo"><div>since</div></div>
   <section class="col col-3" style="margin:0">
     <label class="input">
       <i class="icon-append fa fa-calendar" ng-click="open($event)"></i>
