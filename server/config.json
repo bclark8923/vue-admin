@@ -1,5 +1,6 @@
 {
   "production": {
+  	"mongoDB":"mongodb://vue-admin:1qaz2wsx3edc@troup.mongohq.com:10088/vue-admin"
   },
   "staging": {
   },
