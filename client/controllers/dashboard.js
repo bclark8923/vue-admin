@@ -5,8 +5,12 @@ angular.module('app.controllers')
 
   Questions.sync();
 
+  $scope.page = 0;
+
   $scope.realtime = true;
 
-  $scope.questions = Questions.get;
+  $scope.questions = function() {
+    return Questions.pagination($scope.page);
+  };
 
 });

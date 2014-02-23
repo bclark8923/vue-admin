@@ -4,6 +4,7 @@
 angular.module('app.services')
 .factory('Questions', function($http, $q, _) {
   var _questions = [];
+  var cache = {};
   return {
     sync: function() {
       console.log('Questions: SYNC', _questions);
@@ -12,11 +13,17 @@ angular.module('app.services')
       $http.get('/api/sessions')
       .success(function(sessions, length) {
         console.log('Questions: success', sessions, length);
-        _questions = _.sample(sessions, 20);
+        cache[0] = _.sample(sessions, 20);
+        cache[1] = _.sample(sessions, 20);
+        cache[2] = _.sample(sessions, 20);
+        _questions = cache[0];
         dfd.resolve(_questions);
       });
 
       return dfd.promise;
+    },
+    pagination: function(page) {
+      return cache[page];
     },
     get: function() {
       console.log('Questions: GET', _questions);

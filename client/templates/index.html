@@ -80,7 +80,7 @@
                 {{ session.length }}
               </td>
               <td class="text-align-center">
-                {{ session.seconds }}
+                {{ session.interactions.length }}
               </td>
             </tr>
 
@@ -94,14 +94,14 @@
                 <li class="prev disabled">
                   <a href="#">Previous</a>
                 </li>
-                <li class="active">
-                  <a href="#">1</a>
+                <li ng-class="{active: page===0}">
+                  <a href="#" ng-click="page=0">1</a>
                 </li>
-                <li>
-                  <a href="#">2</a>
+                <li ng-class="{active: page===1}">
+                  <a href="#" ng-click="page=1">2</a>
                 </li>
-                <li>
-                  <a href="#">3</a>
+                <li ng-class="{active: page===2}">
+                  <a href="#" ng-click="page=2">3</a>
                 </li>
                 <li class="next">
                   <a href="#">Next</a>
