@@ -114,6 +114,7 @@ module.exports = function(SERVER_ROOT) {
         });
       } else {
         console.log('answer saved');
+        return res.json(req.body);
         return res.json({
           success: req.body
         });
