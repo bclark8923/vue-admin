@@ -30,9 +30,9 @@ will not initialize.
       <a href="/" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
     </li>
 
-    <li ng-class="{active: isActive('sessions')}">
+    <li ng-class="{active: isActive('sessions')}" style="display:block">
       <a href="/sessions"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Sessions</span></a>
-      <ul>
+      <ul ng-show="true">
         <li>
           <a href="ajax/flot.html">Flot Chart</a>
         </li>

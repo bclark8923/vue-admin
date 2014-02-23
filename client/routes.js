@@ -9,7 +9,8 @@ angular.module('app')
   .when('/', {
     templateUrl: baseTemplateUrl + '/dashboard.html',
     controller: 'DashboardCtrl',
-    state: 'dashboard'
+    state: 'dashboard',
+    ribbon: true
   })
 
   .when('/sessions', {
