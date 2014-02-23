@@ -64,13 +64,13 @@ module.exports = function(SERVER_ROOT) {
             question: questions[0].question,
             id: question._id
           }
-          database.questions().update({_id:question._id}, {$set: {asked: true}}, function(err, saved) {
+          /*database.questions().update({_id:question._id}, {$set: {asked: true}}, function(err, saved) {
             if( err || !saved ) {
               console.log('question not saved');
             } else {
               console.log('question saved');
             }
-          });
+          });*/
           return res.json(response);
         } );  
       }    
@@ -83,6 +83,21 @@ module.exports = function(SERVER_ROOT) {
     var sessions = database.get('sessions');
 
     return res.json(sessions);
+
+  });
+
+  app.get('/api/sessions/:sessionID', function(req, res) {
+    console.log('Sessions: ');
+    var sessions = database.get('sessions');
+    sessions.forEach( function(session) {
+      if(session.sessionID === parseInt(req.params.sessionID)) {
+        console.log("match");
+        thisSession = session;
+        return res.json(session);
+      }
+    });
+
+    return res.json({});
 
   });
 
