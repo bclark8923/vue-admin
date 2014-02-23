@@ -64,13 +64,13 @@ module.exports = function(SERVER_ROOT) {
             question: questions[0].question,
             id: question._id
           }
-          /*database.questions().update({_id:question._id}, {$set: {asked: true}}, function(err, saved) {
+          database.questions().update({_id:question._id}, {$set: {asked: true}}, function(err, saved) {
             if( err || !saved ) {
               console.log('question not saved');
             } else {
               console.log('question saved');
             }
-          });*/
+          });
           return res.json(response);
         } );  
       }    
@@ -115,7 +115,7 @@ module.exports = function(SERVER_ROOT) {
       } else {
         console.log('answer saved');
         return res.json({
-          success: true
+          success: req.body
         });
       }
     });
