@@ -6,5 +6,5 @@ angular.module('app')
 })
 .config(function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
-})
-.constant('version', '0.6')
+  cfpLoadingBarProvider.parentSelector = 'body';
+});

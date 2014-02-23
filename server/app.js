@@ -77,10 +77,10 @@ module.exports = function(SERVER_ROOT) {
   app.post('/api/questions', function(req, res) {
     console.log('Question: ', req.body.message, req.body.devices);
 
-    req.body.devices.forEach(function(device) {
-      console.log(req.body.devices[device]);
+    req.body.devices.forEach(function(deviceID) {
+      console.log(deviceID);
       var obj = {
-        deviceID: req.body.devices[device],
+        deviceID: deviceID,
         question: req.body.message,
         asked: false,
         answer: ''
