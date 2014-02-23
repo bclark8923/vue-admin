@@ -91,7 +91,7 @@ gulp.task('uglify', function(cb) {
 gulp.task('lr-server', function(cb) {
 
   server.listen(config.livereload.port, function(err) {
-    if (err) return console.log(err);
+    if (err) console.log(err);
   });
 
 });

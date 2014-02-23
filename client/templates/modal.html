@@ -2,7 +2,10 @@
   <h4>I'm a modal!</h4>
 </div>
 <div class="modal-body">
-
+  sessions
+  <div ng-repeat="sessionId in sessions">
+    ID: {{ sessionId }}
+  </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-primary" ng-click="ok()">OK</button>
