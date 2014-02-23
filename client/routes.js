@@ -13,17 +13,26 @@ angular.module('app')
     ribbon: true
   })
 
-  .when('/sessions/:sessionID', {
-    templateUrl: baseTemplateUrl + '/session.html',
-    controller: 'SessionCtrl',
-    state: 'sessions'
-  })
-
   .when('/sessions', {
     templateUrl: baseTemplateUrl + '/sessions.html',
     controller: 'SessionsCtrl',
     state: 'sessions'
   })
+
+  .when('/sessions/:sessionID', {
+    templateUrl: baseTemplateUrl + '/session.html',
+    controller: 'SessionCtrl',
+    state: 'sessions',
+    resolve: {
+      session: function($http, $q, $route) {
+        var dfd = $q.defer();
+        $http.get('/api/sessions/'+$route.current.params.sessionID)
+        .success(dfd.resolve);
+        return dfd.promise;
+      }
+    }
+  })
+
 
   .when('/pushes', {
     templateUrl: baseTemplateUrl + '/pushes.html',

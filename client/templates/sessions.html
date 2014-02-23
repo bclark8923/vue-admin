@@ -47,7 +47,7 @@
             <tr class="add-pointer no-select tabs-left nav-tabs"
                 ng-class="{select: session.checked, highlight: session.checked}"
                 ng-repeat="session in questions()"
-                ng-click="checkSelection(session)">
+                ng-click="goSessionID(session.sessionID)">
               <td>
                 <div class="checkbox">
                   <label>

@@ -5,7 +5,7 @@
 <div class="login-info">
   <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
     <img src="https://pbs.twimg.com/profile_images/378800000089457591/c0d4bf79db7913fee117377ec28518c2_bigger.jpeg" alt="me" class="online" />
-    <a href="#" id="show-shortcut">
+    <a href="#/" id="show-shortcut">
       PatrickJS <i class="fa fa-angle-down"></i>
     </a>
   </span>
@@ -21,32 +21,32 @@ will not initialize.
 <nav>
   <!-- NOTE: Notice the gaps after each icon usage <i></i>..
   Please note that these links work a bit different than
-  traditional href="" links. See documentation for details.
+  traditional href="#" links. See documentation for details.
   -->
 
   <ul>
 
     <li ng-class="{active: isActive('dashboard')}">
-      <a href="/" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+      <a href="#/" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
     </li>
 
     <li ng-class="{active: isActive('sessions')}" style="display:block">
-      <a href="/sessions"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Sessions</span></a>
+      <a href="#/sessions"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Sessions</span></a>
       <ul ng-show="true">
         <li>
-          <a href="ajax/flot.html">Flot Chart</a>
+          <a href="#">Flot Chart</a>
         </li>
         <li>
-          <a href="ajax/morris.html">Morris Charts</a>
+          <a href="#">Morris Charts</a>
         </li>
         <li>
-          <a href="ajax/inline-charts.html">Inline Charts</a>
+          <a href="#">Inline Charts</a>
         </li>
       </ul>
     </li>
 
     <li ng-class="{active: isActive('pushes')}">
-      <a href="/pushes"><i class="fa fa-lg fa-fw fa-comments"></i> <span class="menu-item-parent">Pushes</span><span class="badge pull-right inbox-badge">14</span></a>
+      <a href="#/pushes"><i class="fa fa-lg fa-fw fa-comments"></i> <span class="menu-item-parent">Pushes</span><span class="badge pull-right inbox-badge">14</span></a>
     </li>
 
   </ul>
