@@ -68,7 +68,7 @@ angular.module('app.services').factory('Pushes', [
     return {
       sync: function () {
         var dfd = $q.defer();
-        $http.get('/api/questions').success(function (questions) {
+        $http.get('/api/questions', { ignoreLoadingBar: true }).success(function (questions) {
           _pushes = questions;
           dfd.resolve(_pushes);
         });
@@ -89,19 +89,25 @@ angular.module('app.services').factory('Questions', [
   function ($http, $q, _) {
     var _questions = [];
     var _pages = [];
+    var cache = {};
     return {
       sync: function () {
         var self = this;
         console.log('Questions: SYNC', _questions);
         var dfd = $q.defer();
-        $http.get('/api/sessions').success(function (sessions, length) {
-          console.log('Questions: success', sessions, length);
-          _pages.push(_.sample(sessions, 20));
-          _pages.push(_.sample(sessions, 20));
-          _pages.push(_.sample(sessions, 20));
-          _questions = _pages[self.page];
-          dfd.resolve(_questions);
-        });
+        if (!cache[_pages.length]) {
+          cache[_pages.length] = $http.get('/api/sessions').success(function (sessions, length) {
+            console.log('Questions: success', sessions, length);
+            _pages['0'] = sessions.slice(0, 20);
+            _pages['1'] = sessions.slice(20, 40);
+            _pages['2'] = sessions.slice(40, 60);
+            _pages['3'] = sessions.slice(80, 100);
+            _questions = _pages[self.page];
+            dfd.resolve(_questions);
+          });
+        } else {
+          dfd.resolve(cache[_pages.length]);
+        }
         return dfd.promise;
       },
       pages: function () {
@@ -848,13 +854,18 @@ angular.module('app').config([
   '$rootScope',
   '$routeParams',
   '$route',
+  '$interval',
   'Pushes',
-  function ($rootScope, $routeParams, $route, Pushes) {
+  function ($rootScope, $routeParams, $route, $interval, Pushes) {
     $rootScope.$route = $route;
     $rootScope.$routeParams = $routeParams;
     $rootScope.pushesCount = function () {
       return Pushes.get().length;
     };
+    Pushes.sync();
+    $interval(function () {
+      Pushes.sync();
+    }, 3000);
     $rootScope.isActive = function (state) {
       return $route.current && $route.current.state ? $route.current.state === state : null;
     };

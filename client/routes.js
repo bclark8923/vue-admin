@@ -49,12 +49,16 @@ angular.module('app')
     redirectTo: '/'
   });
 })
-.run(function($rootScope, $routeParams, $route, Pushes) {
+.run(function($rootScope, $routeParams, $route, $interval, Pushes) {
   $rootScope.$route = $route;
   $rootScope.$routeParams = $routeParams;
   $rootScope.pushesCount = function() {
     return Pushes.get().length;
   };
+  Pushes.sync();
+  $interval(function() {
+    Pushes.sync();
+  }, 3000);
 
   $rootScope.isActive = function(state) {
     return ($route.current && $route.current.state) ? $route.current.state === state : null;

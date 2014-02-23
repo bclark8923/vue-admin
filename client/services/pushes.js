@@ -7,7 +7,9 @@ angular.module('app.services')
   return {
     sync: function() {
       var dfd = $q.defer();
-      $http.get('/api/questions').success(function(questions) {
+      $http.get('/api/questions', {
+        ignoreLoadingBar: true
+      }).success(function(questions) {
         _pushes = questions;
         dfd.resolve(_pushes);
       });
