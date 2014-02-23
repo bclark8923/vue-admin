@@ -71,13 +71,23 @@ module.exports = function(SERVER_ROOT) {
   app.post('/api/questions', function(req, res) {
     console.log('Question: ', req.body.message, req.body.devices);
 
-    for (device in req.body.devices) {
+    req.body.devices.forEach(function(device) {
       console.log(req.body.devices[device]);
-      database.questions.save({deviceID: req.body.devices[device], question: req.body.message, asked: false, answer: ""}, function(err, saved) {
-        if( err || !saved ) console.log("User not saved");
-        else console.log("User saved");
+      var obj = {
+        deviceID: req.body.devices[device],
+        question: req.body.message,
+        asked: false,
+        answer: ''
+      };
+
+      database.questions().save(obj, function(err, saved) {
+        if( err || !saved ) {
+          console.log('User not saved');
+        } else {
+          console.log('User saved');
+        }
       });
-    }
+    });
 
     return res.json({
       success: true
