@@ -50,7 +50,6 @@ for num in range(1,numSessions):
 	print "\"country\": \"" + countries[curDevice] + "\","
 	print "\"location\": { \"lat\": " + latitude[curDevice] + ", \"lon\": " + longitude[curDevice] + "},"
 	print "\"date\": \"" + startDay + "\","
-	print "\"time\": \"" + startTime + "\","
 	print "\"length\": " + str(sessionLength) + ","
 	print "\"interactions\": ["
 
@@ -218,7 +217,8 @@ for num in range(1,numSessions):
 
 
 
-	print "]"
+	print "],"
+	print "\"time\": " + str(sessionTime)
 
 	if num == numSessions - 1:
 		print "}"
