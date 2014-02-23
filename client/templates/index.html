@@ -27,7 +27,7 @@
           </label>
         </span>
       </div>
-      <div class="widget-toolbar hidden-mobile" ng-click="send(selection)">
+      <div class="widget-toolbar hidden-mobile" ng-click="openModal(selection)">
         <span class="onoffswitch-title"><i class="fa fa-mobile-phone"></i> Send</span>
       </div>
     </header>
@@ -64,7 +64,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="add-pointer no-select"
+            <tr class="add-pointer no-select tabs-left nav-tabs"
+                ng-class="{select: session.checked}"
                 ng-repeat="session in questions()"
                 ng-click="checkSelection(session)">
               <td>

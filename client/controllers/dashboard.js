@@ -52,7 +52,7 @@ angular.module('app.controllers')
   };
 
 
-  $scope.send = function(selection) {
+  $scope.openModal = function(selection) {
     $modal.open({
       templateUrl: 'templates/modal.html',
       controller: 'ModalInstanceCtrl',
@@ -62,12 +62,14 @@ angular.module('app.controllers')
         }
       }
     }).result
-    .then(function () {
-
+    .then(function() {
+      console.log('End Modal');
+      _.each($scope.pages(), function(collection) {
+        $scope.toggleAll(collection, true);
+        $scope.selectAll = false;
+      });
     });
   };
-
-
 
 
   $scope.$watch('currentPage', function() {
