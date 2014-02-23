@@ -1,3 +1,95 @@
-<h1>
-  Sessions
-</h1>
+
+<article class="col-sm-12 col-md-12 col-lg-12">
+
+  <!-- new widget -->
+  <div class="jarviswidget" id="wid-id-2" data-widget-colorbutton="false" data-widget-editbutton="false">
+
+    <header>
+      <span class="widget-icon"> <i class="fa fa-map-marker"></i> </span>
+      <h2>Sessions</h2>
+      <div class="widget-toolbar hidden-mobile" ng-click="openModal(selection)">
+        <span class="onoffswitch-title"><i class="fa fa-mobile-phone"></i> Send</span>
+      </div>
+    </header>
+
+    <!-- widget div-->
+    <div>
+      <!-- widget edit box -->
+      <div class="jarviswidget-editbox">
+        <div>
+          <label>Title:</label>
+          <input type="text" />
+        </div>
+      </div>
+      <!-- end widget edit box -->
+
+      <div class="widget-body no-padding">
+        <!-- content goes here -->
+
+        <table class="table table-striped table-hover table-condensed">
+          <thead>
+            <tr>
+              <th class="no-select add-pointer"
+                  ng-click="toggleAll(questions(), selectAll); selectAll=!selectAll">
+                <i class="fa fa-check-square-o" ng-show="selectAll"></i>
+                <i class="fa fa-square-o" ng-hide="selectAll"></i>
+              </th>
+              <th>Device ID</th>
+              <th>Date</th>
+              <th class="text-align-center">Session length</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="add-pointer no-select tabs-left nav-tabs"
+                ng-class="{select: session.checked}"
+                ng-repeat="session in questions()"
+                ng-click="checkSelection(session)">
+              <td>
+                <i class="fa fa-check-square-o" ng-show="session.checked"></i>
+                <i class="fa fa-square-o" ng-hide="session.checked"></i>
+              </td>
+              <td>
+                {{ session.deviceID }}
+              </td>
+              <td class="text-align-center">
+                {{ session.date | date }}
+              </td>
+              <td class="text-align-center">
+                {{ session.time }}
+              </td>
+            </tr>
+
+
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan=5>
+              <ul class="pagination pagination-xs no-margin no-select">
+                <li class="prev" ng-class="{disabled: checkPage(0)}">
+                  <a ng-click="previousPage()">Previous</a>
+                </li>
+
+                <li ng-repeat="page in pages()"
+                    ng-class="{active: checkPage($index)}">
+                  <a href="#" ng-click="changePage($index)">{{ $index+1 }}</a>
+                </li>
+
+                <li class="next" ng-class="{disabled: checkPage(pages().length - 1)}">
+                  <a ng-click="nextPage()">Next</a>
+                </li>
+              </ul></td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <!-- end content -->
+
+      </div>
+
+    </div>
+    <!-- end widget div -->
+  </div>
+  <!-- end widget -->
+
+</article>

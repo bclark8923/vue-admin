@@ -6,7 +6,7 @@
 
     <header>
       <span class="widget-icon"> <i class="fa fa-map-marker"></i> </span>
-      <h2>User</h2>
+      <h2>Sessions</h2>
       <div class="widget-toolbar hidden-mobile">
         <span class="onoffswitch-title">
           <i class="fa fa-location-arrow"></i>
@@ -48,7 +48,6 @@
 
         <div vector-map class="vector-map" map="world_mill_en" countries="data"></div>
 
-        {{ selection }}
         <table class="table table-striped table-hover table-condensed">
           <thead>
             <tr>
@@ -60,7 +59,7 @@
               <th>Device ID</th>
               <th>Number of sessions by Date</th>
               <th class="text-align-center">Average session length</th>
-              <th class="text-align-center">Seconds</th>
+              <th class="text-align-center">Number of sessions</th>
             </tr>
           </thead>
           <tbody>
@@ -79,7 +78,7 @@
                 {{ session.date | date }}
               </td>
               <td class="text-align-center">
-                {{ session.length }}
+                {{ session.location }}
               </td>
               <td class="text-align-center">
                 {{ session.interactions.length }}
