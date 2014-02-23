@@ -6,10 +6,10 @@ var path = require('path');
 var cors = require('cors');
 var config = require('./config.json')[NODE_ENV];
 
-
 module.exports = function(SERVER_ROOT) {
   var app = express();
   app.directory = SERVER_ROOT;
+  var database = require('../database')(app, config);
 
   // Store all environment variables
   app.set('port', PORT);
@@ -21,7 +21,8 @@ module.exports = function(SERVER_ROOT) {
     app.set('view engine', 'ejs');
     app.set('views', path.join(app.directory, 'client'));
     app.use(express.logger('dev'));
-    app.use(express.bodyParser());
+    app.use(express.json());
+    app.use(express.urlencoded());
     app.use(express.methodOverride());
     app.use(express.cookieParser());
     app.use(express.session({secret: 'yolo'}));
@@ -61,7 +62,7 @@ module.exports = function(SERVER_ROOT) {
 
   app.get('/api/sessions', function(req, res) {
     console.log('Sessions: ');
-    var sessions = require('../database/sessions.json');
+    var sessions = database.sessions;
 
     return res.json(sessions);
 
