@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('DashboardCtrl', function($scope, Questions) {
+.controller('DashboardCtrl', function($scope, $modal, Questions) {
 
   Questions.sync().then(function() {
     $scope.data = Questions.countries($scope.currentPage);
@@ -12,6 +12,16 @@ angular.module('app.controllers')
 
   $scope.realtime = true;
 
+
+  $scope.send = function() {
+    $modal.open({
+      templateUrl: 'templates/modal.html',
+      controller: 'ModalInstanceCtrl'
+    }).result
+    .then(function () {
+
+    });
+  };
 
 
   $scope.$watch('currentPage', function() {
