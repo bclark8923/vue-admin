@@ -637,7 +637,7 @@ angular.module('app.controllers').controller('RibbonCtrl', [
     };
     // Disable weekend selection
     $scope.disabled = function (date, mode) {
-      return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+      return false;
     };
     $scope.toggleMin = function () {
       $scope.minDate = $scope.minDate ? null : new Date();
