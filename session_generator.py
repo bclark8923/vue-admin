@@ -45,7 +45,7 @@ for num in range(1,numSessions):
 	curInteractions = random.randint(1,numInteractions)
 
 
-	print "\"sessionID\": \"" + str(num) + "\","
+	print "\"sessionID\": " + str(num) + ","
 	print "\"deviceID\": \"" + devices[curDevice] + "\","
 
 	print "\"city\": \"" + cities[curDevice] + "\","
