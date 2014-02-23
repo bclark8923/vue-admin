@@ -48,15 +48,21 @@ module.exports = function(SERVER_ROOT) {
   app.get('/api/device/:deviceID', function(req, res) {
     console.log('Device: ', req.params.deviceID);
 
-    var response = (+req.params.deviceID % 2) ? {
-      askUser: true,
-      question: 'the question',
-      id: 2029
-    } : {
-      askUser: false
-    };
+    var response = {askUser:false};
+    database.questions().find({deviceID: req.params.deviceID + '', askUser: false}, function(err, users) {
+      if( err || !users) console.log("No questions found");
+      else users.forEach( function(question) {
+        console.log(question);
+        response = {
+          askUser: true,
+          question: quesion.question,
+          id: question.ObjectId
+        }
+        return res.json(response);
+      } );
 
-    return res.json(response);
+      return res.json(response);
+    });
 
   });
 
