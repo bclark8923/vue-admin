@@ -1,30 +1,12 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('DashboardCtrl', function($scope, $http) {
-  $scope.world = 'World';
+.controller('DashboardCtrl', function($scope, Questions) {
+
+  Questions.sync();
 
   $scope.realtime = true;
 
-  $scope.sessions = [
-    {
-      id: 677,
-      byDate : new Date(),
-      length: 234,
-      seconds: 17
-    },
-    {
-      id: 677,
-      byDate : new Date(),
-      length: 234,
-      seconds: 17
-    },
-    {
-      id: 677,
-      byDate : new Date(),
-      length: 234,
-      seconds: 17
-    }
-  ];
+  $scope.questions = Questions.first;
 
 });
