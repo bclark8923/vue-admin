@@ -6,6 +6,7 @@ angular.module('app.services')
 
   var _questions = [];
   var _pages = [];
+  var _reduced = [];
 
   var cache = {};
   return {
@@ -21,8 +22,26 @@ angular.module('app.services')
           _pages['1'] = (sessions.slice(20, 40));
           _pages['2'] = (sessions.slice(40, 60));
           _pages['3'] = (sessions.slice(80, 100));
-          _questions = _pages[self.page];
+          _questions = sessions;//_pages[self.page];
           cache[_pages.length] = _questions;
+
+          _reduced = sessions.reduce(function (result, o) {
+            var unit = o.deviceID;
+            console.log(unit);
+            if (!(unit in result)) {
+                result.arr.push(result[unit] = { 
+                    deviceID: unit, 
+                    sessionTime: o.time, 
+                    sessions: 1 
+                });
+            } else {
+                result[unit].sessionTime += o.time;
+                result[unit].sessions += 1;
+            }
+
+            return result;
+          }, { arr: [] }).arr;
+
           dfd.resolve(cache[_pages.length]);
         });
       } else {
@@ -52,23 +71,8 @@ angular.module('app.services')
       return _questions;
     },
     getReduced: function() {
-      var reduced = _questions.reduce(function (result, o) {
-        var unit = o.deviceID;
-        console.log(unit);
-        if (!(unit in result)) {
-            result.arr.push(result[unit] = { 
-                device: unit, 
-                sessionTime: o.time, 
-                sessions: 1 
-            });
-        } else {
-            result[unit].sessionTime += o.time;
-            result[unit].sessions += 1;
-        }
-
-        return result;
-      }, { arr: [] }).arr;
-      return reduced;
+      console.log('QuestionsReduced: GET', _reduced);
+      return _reduced;
     },
     first: function(amount) {
       return _.first(_questions, amount);
