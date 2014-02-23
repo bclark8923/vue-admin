@@ -41,9 +41,7 @@ for num in range(1,numSessions):
 	startDateSplit = startDate.split(' ')
 	startDay = startDateSplit[0]
 	startTime = startDateSplit[1]
-	sessionLength = random.randint(15,45)
 	curInteractions = random.randint(1,numInteractions)
-
 
 	print "\"sessionID\": " + str(num) + ","
 	print "\"deviceID\": \"" + devices[curDevice] + "\","
@@ -52,7 +50,6 @@ for num in range(1,numSessions):
 	print "\"country\": \"" + countries[curDevice] + "\","
 	print "\"location\": { \"lat\": " + latitude[curDevice] + ", \"lon\": " + longitude[curDevice] + "},"
 	print "\"date\": \"" + startDay + "\","
-	print "\"length\": " + str(sessionLength) + ","
 	print "\"interactions\": ["
 
 	sessionTime = 0
