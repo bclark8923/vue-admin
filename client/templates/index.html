@@ -66,15 +66,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="session in sessions">
+            <tr ng-repeat="session in questions()">
               <td>
                 <input type="checkbox" ng-model="session.checked">
               </td>
               <td>
-                {{ session.id }}
+                {{ session.deviceID }}
               </td>
               <td class="text-align-center">
-                {{ session.byDate | date }}
+                {{ session.date | date }}
               </td>
               <td class="text-align-center">
                 {{ session.length }}
