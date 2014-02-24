@@ -10,7 +10,8 @@ var mongodb     = require('mongodb');
 var mongoose    = require('mongoose');
 var path        = require('path');
 var fs          = require('fs');
-
+var passport    = require('passport');
+var flash       = require('connect-flash');
 
 var db = mongoose.connect(config.mongoDB);
 
@@ -37,6 +38,8 @@ module.exports = function(SERVER_ROOT) {
     app.use(express.methodOverride());
     app.use(express.cookieParser());
     app.use(express.session({secret: 'kaejsyfgkug372tyriuwygfi76trasuydgfi672g34i7fyologjdsu7fgt6783iw7fgwejtyfrd7i682f3fvwjtafwe4'}));
+    //connect-flash middleware
+    app.use(flash());
     // app.use(express.session());
     app.use('/bower_components', express.static(path.join(app.directory, 'bower_components')));
     app.use('/templates', express.static(path.join(app.directory, 'client/templates')));
@@ -73,8 +76,10 @@ module.exports = function(SERVER_ROOT) {
   };
   walk(models_path);
 
+  //load passport routes/middlewares
+  require(path.join(__dirname, '..', 'authentication', 'passport.js'))(passport);
 
-
+  require('./routes/user.js')(app, passport);
 
 
 
