@@ -3,10 +3,9 @@
 angular.module('app.controllers')
 .controller('DashboardCtrl', function($scope, $modal, Questions, _) {
 
-
-
   $scope.questions = function() {
-    return Questions.getReduced();//pagination($scope.currentPage);
+    var filter = ($scope.ribbonCtrl.submit) ? 'filter' : 'getReduced';
+    return Questions[filter]();//pagination($scope.currentPage);
   };
 
   Questions.sync().then(function() {

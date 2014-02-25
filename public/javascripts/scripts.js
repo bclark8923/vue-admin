@@ -90,6 +90,7 @@ angular.module('app.services').factory('Questions', [
     var _questions = [];
     var _pages = [];
     var _reduced = [];
+    var _filterReduced = [];
     var cache = {};
     return {
       sync: function () {
@@ -108,7 +109,6 @@ angular.module('app.services').factory('Questions', [
             cache[_pages.length] = _questions;
             _reduced = sessions.reduce(function (result, o) {
               var unit = o.deviceID;
-              console.log(unit);
               if (!(unit in result)) {
                 result.arr.push(result[unit] = {
                   deviceID: unit,
@@ -118,6 +118,27 @@ angular.module('app.services').factory('Questions', [
               } else {
                 result[unit].sessionTime += o.time;
                 result[unit].sessions += 1;
+              }
+              return result;
+            }, { arr: [] }).arr;
+            _filterReduced = sessions.reduce(function (result, o) {
+              var unit = o.deviceID;
+              var interactions = o.interactions;
+              var containsFoodLog = _.contains(o.interactions, {
+                  object: 'UIButton',
+                  page: 'FoodLog'
+                });
+              if (containsFoodLog) {
+                if (!(unit in result)) {
+                  result.arr.push(result[unit] = {
+                    deviceID: unit,
+                    sessionTime: o.time,
+                    sessions: 1
+                  });
+                } else {
+                  result[unit].sessionTime += o.time;
+                  result[unit].sessions += 1;
+                }
               }
               return result;
             }, { arr: [] }).arr;
@@ -150,6 +171,10 @@ angular.module('app.services').factory('Questions', [
       getReduced: function () {
         console.log('QuestionsReduced: GET', _reduced);
         return _reduced;
+      },
+      filter: function () {
+        console.log('filterReduced', _filterReduced);
+        return _filterReduced;
       },
       first: function (amount) {
         return _.first(_questions, amount);
@@ -488,7 +513,8 @@ angular.module('app.controllers').controller('DashboardCtrl', [
   '_',
   function ($scope, $modal, Questions, _) {
     $scope.questions = function () {
-      return Questions.getReduced();  //pagination($scope.currentPage);
+      var filter = $scope.ribbonCtrl.submit ? 'filter' : 'getReduced';
+      return Questions[filter]();  //pagination($scope.currentPage);
     };
     Questions.sync().then(function () {
       $scope.data = Questions.countries($scope.currentPage);
@@ -884,10 +910,10 @@ angular.module('app').config([
     $rootScope.pushesCount = function () {
       return Pushes.get().length;
     };
-    Pushes.sync();
-    $interval(function () {
-      Pushes.sync();
-    }, 6000);
+    // Pushes.sync();
+    // $interval(function() {
+    //   Pushes.sync();
+    // }, 6000);
     $rootScope.isActive = function (state) {
       return $route.current && $route.current.state ? $route.current.state === state : null;
     };

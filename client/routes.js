@@ -55,10 +55,10 @@ angular.module('app')
   $rootScope.pushesCount = function() {
     return Pushes.get().length;
   };
-  Pushes.sync();
-  $interval(function() {
-    Pushes.sync();
-  }, 6000);
+  // Pushes.sync();
+  // $interval(function() {
+  //   Pushes.sync();
+  // }, 6000);
 
   $rootScope.isActive = function(state) {
     return ($route.current && $route.current.state) ? $route.current.state === state : null;

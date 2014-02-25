@@ -7,8 +7,10 @@ angular.module('app.services')
   var _questions = [];
   var _pages = [];
   var _reduced = [];
-
+  var _filterReduced = [];
   var cache = {};
+
+
   return {
     sync: function() {
       var self = this;
@@ -27,16 +29,46 @@ angular.module('app.services')
 
           _reduced = sessions.reduce(function (result, o) {
             var unit = o.deviceID;
-            console.log(unit);
+
             if (!(unit in result)) {
-                result.arr.push(result[unit] = { 
-                    deviceID: unit, 
-                    sessionTime: o.time, 
-                    sessions: 1 
-                });
+              result.arr.push(result[unit] = {
+                deviceID: unit,
+                sessionTime: o.time,
+                sessions: 1
+              });
+
             } else {
+
+              result[unit].sessionTime += o.time;
+              result[unit].sessions += 1;
+
+            }
+
+            return result;
+          }, { arr: [] }).arr;
+
+          _filterReduced = sessions.reduce(function (result, o) {
+            var unit = o.deviceID;
+            var interactions = o.interactions;
+            var containsFoodLog = _.contains(o.interactions, {
+              object: 'UIButton',
+              page: 'FoodLog'
+            });
+            if (containsFoodLog) {
+              if (!(unit in result)) {
+                result.arr.push(result[unit] = {
+                  deviceID: unit,
+                  sessionTime: o.time,
+                  sessions: 1
+                });
+
+              } else {
+
                 result[unit].sessionTime += o.time;
                 result[unit].sessions += 1;
+
+              }
+
             }
 
             return result;
@@ -73,6 +105,10 @@ angular.module('app.services')
     getReduced: function() {
       console.log('QuestionsReduced: GET', _reduced);
       return _reduced;
+    },
+    filter: function() {
+      console.log('filterReduced', _filterReduced);
+      return _filterReduced;
     },
     first: function(amount) {
       return _.first(_questions, amount);
