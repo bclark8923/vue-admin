@@ -49,25 +49,23 @@ angular.module('app.services')
 
           _filterReduced = sessions.reduce(function (result, o) {
             var unit = o.deviceID;
-            var interactions = o.interactions;
-            var containsFoodLog = _.contains(o.interactions, {
-              object: 'UIButton',
-              page: 'FoodLog'
-            });
-            if (containsFoodLog) {
-              if (!(unit in result)) {
-                result.arr.push(result[unit] = {
-                  deviceID: unit,
-                  sessionTime: o.time,
-                  sessions: 1
-                });
 
-              } else {
-
-                result[unit].sessionTime += o.time;
-                result[unit].sessions += 1;
-
+            for( var i = 0; i < o.interactions.length; i++) {
+              if(o.interactions[i].object === 'UIButton' && o.interactions[i].page === 'FoodLog' && o.interactions[i].name === 'Add Food') {
+                return result;
               }
+            }
+            if (!(unit in result)) {
+              result.arr.push(result[unit] = {
+                deviceID: unit,
+                sessionTime: o.time,
+                sessions: 1
+              });
+
+            } else {
+
+              result[unit].sessionTime += o.time;
+              result[unit].sessions += 1;
 
             }
 
