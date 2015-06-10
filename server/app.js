@@ -1,12 +1,22 @@
 var NODE_ENV = process.env.NODE_ENV = (process.env.NODE_ENV || 'production');
-var PORT = process.env.PORT = (process.env.PORT || 3000);
-var _ = require('underscore');
-var express = require('express');
-var stylus = require('stylus');
-var path = require('path');
-var cors = require('cors');
-var config = require('./config.json')[NODE_ENV];
-var mongodb = require('mongodb');
+var PORT        = process.env.PORT = (process.env.PORT || 3000);
+var _           = require('underscore');
+var express     = require('express');
+var stylus      = require('stylus');
+var path        = require('path');
+var cors        = require('cors');
+var config      = require('./config.json')[NODE_ENV];
+var mongodb     = require('mongodb');
+var mongoose    = require('mongoose');
+var path        = require('path');
+var fs          = require('fs');
+var passport    = require('passport');
+var flash       = require('connect-flash');
+
+var db = mongoose.connect(config.mongoDB);
+
+
+
 
 module.exports = function(SERVER_ROOT) {
   var app = express();
@@ -27,7 +37,9 @@ module.exports = function(SERVER_ROOT) {
     app.use(express.urlencoded());
     app.use(express.methodOverride());
     app.use(express.cookieParser());
-    app.use(express.session({secret: 'yolo'}));
+    app.use(express.session({secret: 'kaejsyfgkug372tyriuwygfi76trasuydgfi672g34i7fyologjdsu7fgt6783iw7fgwejtyfrd7i682f3fvwjtafwe4'}));
+    //connect-flash middleware
+    app.use(flash());
     // app.use(express.session());
     app.use('/bower_components', express.static(path.join(app.directory, 'bower_components')));
     app.use('/templates', express.static(path.join(app.directory, 'client/templates')));
@@ -44,6 +56,31 @@ module.exports = function(SERVER_ROOT) {
       }
     }));
   });
+
+
+
+  // Bootstrap models
+  var models_path = path.join(__dirname, '..', 'models');
+  var walk = function(path) {
+      fs.readdirSync(path).forEach(function(file) {
+          var newPath = path + '/' + file;
+          var stat = fs.statSync(newPath);
+          if (stat.isFile()) {
+              if (/(.*)\.(js$|coffee$)/.test(file)) {
+                  require(newPath);
+              }
+          } else if (stat.isDirectory()) {
+              walk(newPath);
+          }
+      });
+  };
+  walk(models_path);
+
+  //load passport routes/middlewares
+  require(path.join(__dirname, '..', 'authentication', 'passport.js'))(passport);
+
+  require('./routes/user.js')(app, passport);
+
 
 
 
@@ -64,7 +101,7 @@ module.exports = function(SERVER_ROOT) {
             askUser: true,
             question: questions[0].question,
             id: question._id
-          }
+          };
           database.questions().update({_id:question._id}, {$set: {asked: true}}, function(err, saved) {
             if( err || !saved ) {
               console.log('question not saved');
